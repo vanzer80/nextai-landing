@@ -26,18 +26,18 @@ export function Results() {
 
               <div className="mt-4 grid gap-3 sm:grid-cols-[1fr_auto_1fr] sm:items-start">
                 {/* Antes */}
-                <div className="rounded-xl border border-border bg-surface p-4">
+                <div className="rounded-xl border border-border-subtle bg-surface p-4">
                   <p className="mb-2 font-mono text-[10px] uppercase tracking-wider text-muted">Hoje</p>
                   <p className="text-sm leading-relaxed text-muted">{o.before}</p>
                 </div>
 
                 {/* Seta */}
                 <div className="hidden items-center justify-center pt-8 sm:flex">
-                  <ArrowRight className="size-4 shrink-0 text-primary/50" />
+                  <ArrowRight className="size-4 shrink-0 text-muted" />
                 </div>
 
                 {/* Depois */}
-                <div className="rounded-xl border border-primary/25 bg-primary/5 p-4">
+                <div className="rounded-xl border border-primary/20 bg-primary/5 p-4">
                   <p className="mb-2 font-mono text-[10px] uppercase tracking-wider text-primary">Com NextAI</p>
                   <p className="text-sm leading-relaxed text-text">{o.after}</p>
                 </div>
@@ -62,7 +62,7 @@ export function Results() {
               className="flex flex-col rounded-2xl border border-border bg-card p-7"
             >
               <p className="text-pretty text-[16px] leading-relaxed text-text">"{d.quote}"</p>
-              <div className="mt-6 flex items-center gap-3 border-t border-border pt-5">
+              <div className="mt-6 flex items-center gap-3 border-t border-border-subtle pt-5">
                 <span className="grid size-10 shrink-0 place-items-center rounded-full bg-primary/15 font-mono text-xs font-medium text-primary">
                   {d.initials}
                 </span>

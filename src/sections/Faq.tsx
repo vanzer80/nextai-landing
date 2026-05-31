@@ -11,7 +11,7 @@ export function Faq() {
       <Container className="max-w-3xl">
         <SectionTitle eyebrow="Perguntas frequentes" title="O que os gestores perguntam antes de decidir." />
 
-        <div className="mt-12 divide-y divide-border border-y border-border">
+        <div className="mt-12 divide-y divide-border-subtle border-y border-border-subtle">
           {FAQ_ITEMS.map((f, i) => {
             const isOpen = open === i;
             return (

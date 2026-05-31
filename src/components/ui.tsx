@@ -20,10 +20,7 @@ export function useReveal<T extends HTMLElement = HTMLDivElement>() {
     const io = new IntersectionObserver(
       (entries) => {
         for (const e of entries) {
-          if (e.isIntersecting) {
-            setShown(true);
-            io.disconnect();
-          }
+          if (e.isIntersecting) { setShown(true); io.disconnect(); }
         }
       },
       { threshold: 0.15, rootMargin: '0px 0px -8% 0px' },
@@ -58,6 +55,11 @@ export function Reveal({
   );
 }
 
+/**
+ * Eyebrow — linha de contexto acima dos títulos.
+ * ai=true → teal (reservado exclusivamente para IA)
+ * ai=false → primary (azul de ação)
+ */
 export function Eyebrow({ children, ai = false }: { children: ReactNode; ai?: boolean }) {
   return (
     <span
@@ -77,17 +79,43 @@ type ButtonProps = ComponentPropsWithoutRef<'a'> & {
   size?: 'md' | 'lg';
 };
 
+/**
+ * ButtonLink — único componente de CTA.
+ *
+ * primary   → bg-primary, hover escurece (primary-hover), sombra/glow suave
+ * secondary → outline neutro, hover bg-primary/5 (não usa outra cor de ação)
+ * ghost     → sem borda, texto muted que clareia
+ * invert    → bg claro sobre fundo primary (CTA final)
+ */
 export function ButtonLink({ variant = 'primary', size = 'md', className, children, ...props }: ButtonProps) {
   const base =
-    'group inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg active:scale-[0.985] disabled:pointer-events-none disabled:opacity-50';
-  const sizes = { md: 'h-10 px-4 text-sm', lg: 'h-12 px-6 text-[15px]' };
-  const variants = {
-    primary:
-      'bg-primary text-on-primary shadow-[0_8px_24px_-8px_var(--primary)] hover:bg-primary-hover hover:shadow-[0_12px_32px_-8px_var(--primary)] hover:-translate-y-0.5',
-    secondary: 'border border-border bg-card text-text hover:border-primary/50 hover:-translate-y-0.5',
-    ghost: 'text-muted hover:text-text',
-    invert: 'bg-bg text-text shadow-lg hover:-translate-y-0.5',
+    'group inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 ' +
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-bg ' +
+    'active:scale-[0.985] disabled:pointer-events-none disabled:opacity-50';
+
+  const sizes: Record<NonNullable<ButtonProps['size']>, string> = {
+    md: 'h-10 px-4 text-sm',
+    lg: 'h-12 px-6 text-[15px]',
   };
+
+  const variants: Record<NonNullable<ButtonProps['variant']>, string> = {
+    primary:
+      'bg-primary text-on-primary ' +
+      'shadow-[0_6px_20px_-6px_color-mix(in_srgb,var(--primary)_60%,transparent)] ' +
+      'hover:bg-primary-hover hover:shadow-[0_10px_28px_-6px_color-mix(in_srgb,var(--primary)_50%,transparent)] ' +
+      'hover:-translate-y-px',
+
+    secondary:
+      'border border-white/[0.14] bg-transparent text-text ' +
+      'hover:border-white/[0.22] hover:bg-primary/5 hover:-translate-y-px',
+
+    ghost:
+      'text-muted hover:text-text',
+
+    invert:
+      'bg-bg text-text shadow-lg hover:-translate-y-px',
+  };
+
   return (
     <a className={cn(base, sizes[size], variants[variant], className)} {...props}>
       {children}
@@ -95,6 +123,11 @@ export function ButtonLink({ variant = 'primary', size = 'md', className, childr
   );
 }
 
+/**
+ * SectionTitle — cabeçalho padrão de seção.
+ * title   → text (máximo contraste — nunca muted)
+ * intro   → text-secondary (suporte legível, não apagado)
+ */
 export function SectionTitle({
   eyebrow,
   ai,
@@ -112,15 +145,17 @@ export function SectionTitle({
     <div className={cn('max-w-2xl', align === 'center' ? 'mx-auto text-center' : 'text-left')}>
       {eyebrow && <Eyebrow ai={ai}>{eyebrow}</Eyebrow>}
       <h2 className="mt-4 text-balance text-[1.9rem] font-bold leading-[1.08] sm:text-[2.5rem]">{title}</h2>
-      {intro && <p className="mt-4 text-pretty text-[1.05rem] leading-relaxed text-muted">{intro}</p>}
+      {intro && (
+        <p className="mt-4 text-pretty text-[1.05rem] leading-relaxed text-text-secondary">{intro}</p>
+      )}
     </div>
   );
 }
 
-/** Etiqueta "extraído por IA" — único uso do ciano. */
+/** AiTag — etiqueta de leitura por IA. Usa teal (ai) exclusivamente. */
 export function AiTag({ children = 'Extraído por IA' }: { children?: ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-1.5 rounded-md border border-ai/30 bg-ai/10 px-2 py-1 font-mono text-[10px] font-medium uppercase tracking-wider text-ai">
+    <span className="inline-flex items-center gap-1.5 rounded-md border border-ai/25 bg-ai/10 px-2 py-1 font-mono text-[10px] font-medium uppercase tracking-wider text-ai">
       <Sparkles className="size-3" />
       {children}
     </span>

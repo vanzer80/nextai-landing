@@ -62,7 +62,7 @@ export function Sectors() {
               className="group rounded-2xl border border-border bg-card p-7 transition-colors hover:border-primary/40"
             >
               <div className="flex items-start gap-4">
-                <span className="grid size-11 shrink-0 place-items-center rounded-xl border border-border bg-card2 text-primary transition-colors group-hover:border-primary/40">
+                <span className="grid size-11 shrink-0 place-items-center rounded-xl border border-border bg-card text-primary transition-colors group-hover:border-primary/30 group-hover:bg-primary/5">
                   <s.icon className="size-5" />
                 </span>
                 <div>

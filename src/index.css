@@ -2,101 +2,165 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/*
+ * Design token layer — ÚNICA fonte de verdade para cores.
+ *
+ * Regra de uso:
+ *   bg / surface / card / card2  → fundos e superfícies (nunca use hex direto)
+ *   text                         → títulos e CTAs (máximo contraste)
+ *   text-secondary               → subtítulos e intro text
+ *   muted                        → labels, captions, metadados
+ *   primary / primary-hover      → ação única (botão CTA, links, ícones ativos)
+ *   ai                           → tudo ligado a IA (sempre teal, nunca azul)
+ *   success / warning / danger   → feedback de estado (verde / âmbar / vermelho)
+ *   border                       → bordas de card e separadores
+ *   border-subtle                → divisores internos, separadores leves
+ */
 @theme inline {
   --font-display: 'Schibsted Grotesk', ui-sans-serif, system-ui, sans-serif;
   --font-sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, monospace;
 
-  --color-bg: var(--bg);
+  /* Superfícies */
+  --color-bg:      var(--bg);
   --color-surface: var(--surface);
-  --color-card: var(--card);
-  --color-card2: var(--card2);
-  --color-border: var(--border);
-  --color-text: var(--text);
-  --color-muted: var(--muted);
-  --color-primary: var(--primary);
+  --color-card:    var(--card);
+  --color-card2:   var(--card2);
+
+  /* Bordas */
+  --color-border:        var(--border);
+  --color-border-subtle: var(--border-subtle);
+
+  /* Texto */
+  --color-text:           var(--text);
+  --color-text-secondary: var(--text-secondary);
+  --color-muted:          var(--muted);
+
+  /* Ação principal */
+  --color-primary:       var(--primary);
   --color-primary-hover: var(--primary-hover);
-  --color-on-primary: var(--on-primary);
+  --color-on-primary:    var(--on-primary);
+
+  /* IA (teal exclusivo) */
   --color-ai: var(--ai);
-  --color-alert: var(--alert);
+
+  /* Feedback */
   --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger:  var(--danger);
 }
 
-/* Modo claro (par) */
+/* ─── TEMA CLARO ─────────────────────────────────────────── */
 :root {
-  --bg: #f6f8fc;
+  /* Superfícies */
+  --bg:      #f6f8fc;
   --surface: #eef2f9;
-  --card: #ffffff;
-  --card2: #f4f7fb;
-  --border: #e2e8f2;
-  --text: #0a0e17;
-  --muted: #56627a;
-  --primary: #2f62e6;
-  --primary-hover: #2353d6;
-  --on-primary: #ffffff;
+  --card:    #ffffff;
+  --card2:   #f4f7fb;
+
+  /* Bordas */
+  --border:        #e2e8f2;
+  --border-subtle: rgba(10, 14, 23, 0.06);
+
+  /* Texto */
+  --text:           #0a0e17;
+  --text-secondary: #3d4e63;   /* nível intermediário entre text e muted */
+  --muted:          #56627a;
+
+  /* Ação principal */
+  --primary:       #2f62e6;   /* cor canônica de CTA — única */
+  --primary-hover: #2353d6;   /* escurece no hover (↓ = mais pressão) */
+  --on-primary:    #ffffff;
+
+  /* IA */
   --ai: #0c9c8e;
-  --alert: #c9760a;
+
+  /* Feedback */
   --success: #1e9e5e;
+  --warning: #c9760a;
+  --danger:  #d93636;
+
+  /* Grafismo */
   --grid-line: rgba(10, 14, 23, 0.05);
 }
 
-/* Modo escuro — base sofisticada (padrão) */
+/* ─── TEMA ESCURO (padrão) ───────────────────────────────── */
 .dark {
-  --bg: #0a0e17;
+  /* Superfícies — progressão: bg → surface → card → card2 */
+  --bg:      #0a0e17;
   --surface: #0e1421;
-  --card: #141c2e;
-  --card2: #1a2336;
-  --border: #232d44;
-  --text: #eaeff7;
-  --muted: #93a1b8;
-  --primary: #3b6ff6;
-  --primary-hover: #5683ff;
-  --on-primary: #ffffff;
+  --card:    #141c2e;
+  --card2:   #1a2336;
+
+  /* Bordas */
+  --border:        rgba(255, 255, 255, 0.08);   /* mais sutil que #232d44 */
+  --border-subtle: rgba(255, 255, 255, 0.04);   /* divisores internos leves */
+
+  /* Texto */
+  --text:           #eaeff7;
+  --text-secondary: #c3cddd;   /* subtítulos, intro text — entre text e muted */
+  --muted:          #93a1b8;
+
+  /* Ação principal — UMA família, direção clara */
+  --primary:       #3b6ff6;   /* CTA base — contraste 4.7:1 no bg dark (AA ✓) */
+  --primary-hover: #2f62e6;   /* escurece no hover — pressão, não claridade */
+  --on-primary:    #ffffff;
+
+  /* IA (teal — reservado exclusivamente para contextos de IA) */
   --ai: #2fe0ce;
-  --alert: #f5a524;
+
+  /* Feedback */
   --success: #34c77b;
+  --warning: #f5a524;
+  --danger:  #f04040;
+
+  /* Grafismo */
   --grid-line: rgba(255, 255, 255, 0.045);
 }
 
+/* ─── BASE ───────────────────────────────────────────────── */
 @layer base {
   * {
     border-color: var(--border);
   }
+
   html {
     scroll-behavior: smooth;
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
+
   body {
     background-color: var(--bg);
     color: var(--text);
   }
-  h1,
-  h2,
-  h3 {
+
+  h1, h2, h3 {
     font-family: var(--font-display);
     letter-spacing: -0.022em;
+    color: var(--text);         /* garante títulos sempre em máximo contraste */
   }
+
   ::selection {
-    background-color: color-mix(in srgb, var(--primary) 28%, transparent);
+    background-color: color-mix(in srgb, var(--primary) 25%, transparent);
   }
 }
 
-/* Grade técnica — assinatura visual "blueprint" */
+/* ─── GRAFISMO BLUEPRINT ─────────────────────────────────── */
 .blueprint {
   background-image:
-    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to right,  var(--grid-line) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
   background-size: 56px 56px;
 }
 
-/* Reveal on-scroll */
+/* ─── REVEAL ON SCROLL ───────────────────────────────────── */
 .reveal {
   opacity: 0;
   transform: translateY(18px);
   transition:
-    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity  0.7s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
@@ -106,18 +170,14 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+  html { scroll-behavior: auto; }
   .reveal {
     opacity: 1;
     transform: none;
     transition: none;
   }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.001ms !important;
+  *, *::before, *::after {
+    animation-duration:  0.001ms !important;
     transition-duration: 0.001ms !important;
   }
 }

@@ -50,7 +50,7 @@ export function Flow() {
         <div className="relative mt-14 grid gap-5 md:grid-cols-3">
           <div
             aria-hidden
-            className="absolute left-0 right-0 top-9 hidden h-px bg-gradient-to-r from-transparent via-border to-transparent md:block"
+            className="absolute left-0 right-0 top-9 hidden h-px bg-gradient-to-r from-transparent via-border-subtle to-transparent md:block"
           />
           {steps.map((s, i) => (
             <Reveal key={s.n} delay={i * 90} className="relative rounded-2xl border border-border bg-card p-6">
