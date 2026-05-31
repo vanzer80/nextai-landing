@@ -228,3 +228,48 @@
     0 0 0 1px color-mix(in srgb, var(--ai) 15%, transparent),
     0 8px 32px -8px color-mix(in srgb, var(--ai) 30%, transparent);
 }
+
+/* ─── AI VISUAL SYSTEM ───────────────────────────────────── */
+@keyframes orb-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes orb-spin-r {
+  to { transform: rotate(-360deg); }
+}
+@keyframes orb-drift {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%       { transform: translateY(-14px) scale(1.03); }
+}
+@keyframes scan-sweep {
+  0%   { top: -2px; opacity: 0; }
+  6%   { opacity: 1; }
+  94%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+@keyframes ring-expand {
+  0%   { transform: scale(0.9); opacity: 0.8; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+@keyframes wave-bar {
+  0%, 100% { transform: scaleY(0.2); }
+  50%       { transform: scaleY(1); }
+}
+@keyframes particle-up {
+  0%   { opacity: 0.6; transform: translateY(0) scale(1); }
+  100% { opacity: 0;   transform: translateY(-60px) scale(0.3); }
+}
+@keyframes data-appear {
+  0%   { opacity: 0; transform: translateX(-5px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+@keyframes shimmer-move {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(250%); }
+}
+
+.orb-spin      { animation: orb-spin    16s linear        infinite; }
+.orb-spin-r    { animation: orb-spin-r  22s linear        infinite; }
+.orb-drift     { animation: orb-drift    7s ease-in-out   infinite; }
+.scan-sweep    { animation: scan-sweep  4.5s ease-in-out  1s infinite; }
+.ring-expand   { animation: ring-expand 2.4s ease-out     infinite; }
+.wave-bar      { animation: wave-bar    0.75s ease-in-out infinite; }

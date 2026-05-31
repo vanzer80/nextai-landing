@@ -8,19 +8,24 @@ export function HeroMock() {
 
   return (
     <div className="relative select-none" aria-hidden>
-      {/* Ambient glows */}
-      <div className="pointer-events-none absolute -inset-16 -z-10 rounded-[5rem] bg-primary/10 blur-[120px]" />
-      <div className="pointer-events-none absolute -bottom-12 -right-12 -z-10 size-[22rem] rounded-full bg-ai/6 blur-[90px]" />
-
       {/* ── Main dashboard panel ── */}
       <div
-        className="overflow-hidden rounded-2xl shadow-[0_40px_100px_-20px_rgba(0,0,0,0.85),inset_0_1px_0_rgba(255,255,255,0.06)]"
+        className="relative overflow-hidden rounded-2xl shadow-[0_40px_100px_-20px_rgba(0,0,0,0.9),inset_0_1px_0_rgba(255,255,255,0.06)]"
         style={{
           background: 'linear-gradient(160deg, #0f1829 0%, #0a1020 100%)',
           border: '1px solid rgba(255,255,255,0.07)',
           transform: 'perspective(1300px) rotateY(-9deg) rotateX(3deg)',
         }}
       >
+        {/* Scan line — sweeps across the entire panel */}
+        <div
+          className="scan-sweep pointer-events-none absolute inset-x-0 z-20 h-px"
+          style={{
+            background: 'linear-gradient(to right, transparent 0%, var(--ai) 30%, rgba(255,255,255,0.8) 50%, var(--ai) 70%, transparent 100%)',
+            boxShadow: '0 0 12px 2px color-mix(in srgb, var(--ai) 50%, transparent)',
+          }}
+        />
+
         {/* Window chrome */}
         <div
           className="flex items-center gap-3 px-4 py-3"
@@ -40,21 +45,29 @@ export function HeroMock() {
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="flex items-center gap-1.5 rounded-full px-2 py-0.5 font-mono text-[9px] font-medium text-success" style={{ background: 'rgba(52,199,123,0.12)' }}>
+            <span
+              className="flex items-center gap-1.5 rounded-full px-2 py-0.5 font-mono text-[9px] font-medium text-success"
+              style={{ background: 'rgba(52,199,123,0.12)' }}
+            >
               <span className="pulse-dot size-1.5 rounded-full bg-success" />
               ao vivo
             </span>
             <div className="relative">
               <Bell className="size-4" style={{ color: 'rgba(255,255,255,0.25)' }} />
-              <span className="absolute -right-0.5 -top-0.5 grid size-3.5 place-items-center rounded-full bg-danger font-mono text-[7px] font-bold text-white">3</span>
+              <span className="absolute -right-0.5 -top-0.5 grid size-3.5 place-items-center rounded-full bg-danger font-mono text-[7px] font-bold text-white">
+                3
+              </span>
             </div>
           </div>
         </div>
 
         {/* Dashboard sub-header */}
-        <div className="flex items-center justify-between px-5 py-3" style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+        <div
+          className="flex items-center justify-between px-5 py-3"
+          style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}
+        >
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-widest" style={{ color: 'rgba(255,255,255,0.3)' }}>
+            <p className="font-mono text-[10px] uppercase tracking-widest" style={{ color: 'rgba(255,255,255,0.28)' }}>
               Painel de Operação
             </p>
             <p className="text-[13px] font-semibold" style={{ color: 'rgba(255,255,255,0.75)' }}>
@@ -62,7 +75,7 @@ export function HeroMock() {
             </p>
           </div>
           <button
-            className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 font-mono text-[10px] transition-colors"
+            className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 font-mono text-[10px]"
             style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.35)' }}
           >
             Hoje
@@ -74,21 +87,31 @@ export function HeroMock() {
 
         {/* KPI row */}
         <div className="grid grid-cols-4" style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-          <KpiCell label="OS abertas" value="24" sub="hoje" accent="primary" />
-          <KpiCell label="SLA em risco" value="3" sub="próx. 4h" accent="danger" />
-          <KpiCell label="Aprovações" value="6" sub="pendentes" accent="warning" />
-          <KpiCell label="Reembolsos" value="R$8,4k" sub="+12% hoje" accent="success" />
+          <KpiCell label="OS abertas"  value="24"    sub="hoje"      accent="primary" />
+          {/* SLA com pulse ring */}
+          <div className="relative">
+            <div
+              className="ring-expand absolute inset-0 rounded-none opacity-0"
+              style={{ background: 'var(--danger)', zIndex: 0 }}
+            />
+            <KpiCell label="SLA em risco" value="3" sub="próx. 4h" accent="danger" pulsing />
+          </div>
+          <KpiCell label="Aprovações"  value="6"    sub="pendentes"  accent="warning" />
+          <KpiCell label="Reembolsos"  value="R$8,4k" sub="+12% hoje" accent="success" />
         </div>
 
         {/* Chart + Queue */}
-        <div className="grid grid-cols-[1fr_140px]" style={{ borderTop: '0' }}>
+        <div className="grid grid-cols-[1fr_140px]">
           {/* Bar chart */}
           <div className="p-4" style={{ borderRight: '1px solid rgba(255,255,255,0.04)' }}>
             <div className="mb-3 flex items-center justify-between">
               <span className="text-[11px] font-medium" style={{ color: 'rgba(255,255,255,0.45)' }}>
                 Ordens de serviço · 7 dias
               </span>
-              <span className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-mono text-[9px] font-medium text-success" style={{ background: 'rgba(52,199,123,0.1)' }}>
+              <span
+                className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-mono text-[9px] font-medium text-success"
+                style={{ background: 'rgba(52,199,123,0.1)' }}
+              >
                 <TrendingUp className="size-2.5" /> +18%
               </span>
             </div>
@@ -101,11 +124,14 @@ export function HeroMock() {
                       height: `${(b / max) * 100}%`,
                       background:
                         i === 5
-                          ? 'linear-gradient(to top, var(--primary), color-mix(in srgb, var(--primary) 60%, transparent))'
+                          ? 'linear-gradient(to top, var(--primary), color-mix(in srgb, var(--primary) 55%, transparent))'
                           : i === 6
-                          ? 'rgba(59,111,246,0.35)'
+                          ? 'rgba(59,111,246,0.32)'
                           : 'rgba(255,255,255,0.07)',
-                      boxShadow: i === 5 ? '0 0 12px -2px color-mix(in srgb, var(--primary) 50%, transparent)' : undefined,
+                      boxShadow:
+                        i === 5
+                          ? '0 0 12px -2px color-mix(in srgb, var(--primary) 55%, transparent)'
+                          : undefined,
                     }}
                   />
                   <span className="font-mono text-[8px]" style={{ color: 'rgba(255,255,255,0.18)' }}>
@@ -123,7 +149,7 @@ export function HeroMock() {
             </span>
             <ul className="mt-2.5 space-y-2">
               {[
-                { id: 'OS-2041', badge: 'SLA 1h', accent: 'danger', Icon: AlertTriangle },
+                { id: 'OS-2041', badge: 'SLA 1h',   accent: 'danger',  Icon: AlertTriangle },
                 { id: 'OS-2039', badge: 'Em campo', accent: 'primary', Icon: Clock },
                 { id: 'OS-2036', badge: 'Concluída', accent: 'success', Icon: CheckCircle2 },
               ].map((o) => (
@@ -140,11 +166,9 @@ export function HeroMock() {
                       className="size-2.5"
                       style={{
                         color:
-                          o.accent === 'danger'
-                            ? 'var(--danger)'
-                            : o.accent === 'primary'
-                            ? 'var(--primary)'
-                            : 'var(--success)',
+                          o.accent === 'danger'   ? 'var(--danger)'  :
+                          o.accent === 'primary'  ? 'var(--primary)' :
+                          'var(--success)',
                       }}
                     />
                   </div>
@@ -152,17 +176,13 @@ export function HeroMock() {
                     className="mt-1 inline-block rounded-md px-1.5 py-0.5 font-mono text-[8px] font-medium"
                     style={{
                       background:
-                        o.accent === 'danger'
-                          ? 'rgba(240,64,64,0.12)'
-                          : o.accent === 'primary'
-                          ? 'rgba(59,111,246,0.12)'
-                          : 'rgba(52,199,123,0.12)',
+                        o.accent === 'danger'  ? 'rgba(240,64,64,0.12)'    :
+                        o.accent === 'primary' ? 'rgba(59,111,246,0.12)'   :
+                        'rgba(52,199,123,0.12)',
                       color:
-                        o.accent === 'danger'
-                          ? 'var(--danger)'
-                          : o.accent === 'primary'
-                          ? 'var(--primary)'
-                          : 'var(--success)',
+                        o.accent === 'danger'  ? 'var(--danger)'  :
+                        o.accent === 'primary' ? 'var(--primary)' :
+                        'var(--success)',
                     }}
                   >
                     {o.badge}
@@ -179,8 +199,8 @@ export function HeroMock() {
         className="hero-float absolute -bottom-10 -left-6 w-[15.5rem] rounded-2xl p-4 sm:-left-10"
         style={{
           background: 'linear-gradient(160deg, #0f1a2e 0%, #0a1020 100%)',
-          border: '1px solid rgba(47,224,206,0.15)',
-          boxShadow: '0 24px 60px -15px rgba(0,0,0,0.8), 0 0 0 1px rgba(47,224,206,0.06)',
+          border: '1px solid rgba(47,224,206,0.18)',
+          boxShadow: '0 24px 60px -15px rgba(0,0,0,0.8), 0 0 0 1px rgba(47,224,206,0.07)',
         }}
       >
         <div className="flex items-center justify-between">
@@ -191,7 +211,7 @@ export function HeroMock() {
             >
               <Camera className="size-4" />
             </span>
-            <span className="text-[12px] font-semibold" style={{ color: 'rgba(255,255,255,0.8)' }}>
+            <span className="text-[12px] font-semibold" style={{ color: 'rgba(255,255,255,0.82)' }}>
               Comprovante
             </span>
           </div>
@@ -201,9 +221,9 @@ export function HeroMock() {
           className="mt-3 space-y-1.5 rounded-xl p-2.5 font-mono text-[10px]"
           style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)' }}
         >
-          <Row label="Valor" value="R$ 1.240,00" highlight />
-          <Row label="Categoria" value="Combustível" />
-          <Row label="Pix" value="••••@posto.br" />
+          <MockRow label="Valor"     value="R$ 1.240,00" highlight />
+          <MockRow label="Categoria" value="Combustível" />
+          <MockRow label="Pix"       value="••••@posto.br" />
         </dl>
         <div className="mt-2.5 flex items-center gap-1.5 font-mono text-[9px]" style={{ color: 'rgba(255,255,255,0.25)' }}>
           <MapPin className="size-3" style={{ color: 'rgba(47,224,206,0.5)' }} />
@@ -216,8 +236,8 @@ export function HeroMock() {
         className="hero-float-late absolute -right-4 top-10 rounded-2xl px-4 py-3 sm:-right-8"
         style={{
           background: 'linear-gradient(160deg, #0e1f14 0%, #0a1020 100%)',
-          border: '1px solid rgba(52,199,123,0.18)',
-          boxShadow: '0 16px 48px -12px rgba(0,0,0,0.7), 0 0 0 1px rgba(52,199,123,0.06)',
+          border: '1px solid rgba(52,199,123,0.2)',
+          boxShadow: '0 16px 48px -12px rgba(0,0,0,0.7), 0 0 0 1px rgba(52,199,123,0.07)',
         }}
       >
         <div className="flex items-center gap-2.5">
@@ -228,7 +248,7 @@ export function HeroMock() {
             <CheckCircle2 className="size-4" />
           </span>
           <div>
-            <p className="text-[11px] font-semibold" style={{ color: 'rgba(255,255,255,0.85)' }}>
+            <p className="text-[11px] font-semibold" style={{ color: 'rgba(255,255,255,0.88)' }}>
               Aprovado
             </p>
             <p className="font-mono text-[9px]" style={{ color: 'rgba(255,255,255,0.3)' }}>
@@ -242,30 +262,33 @@ export function HeroMock() {
 }
 
 function KpiCell({
-  label,
-  value,
-  sub,
-  accent,
+  label, value, sub, accent, pulsing,
 }: {
   label: string;
   value: string;
   sub: string;
   accent: 'primary' | 'danger' | 'warning' | 'success';
+  pulsing?: boolean;
 }) {
   const colors = {
     primary: 'var(--primary)',
-    danger: 'var(--danger)',
+    danger:  'var(--danger)',
     warning: 'var(--warning)',
     success: 'var(--success)',
   };
   return (
-    <div className="px-4 py-3.5" style={{ borderRight: '1px solid rgba(255,255,255,0.04)' }}>
+    <div className="relative z-10 px-4 py-3.5" style={{ borderRight: '1px solid rgba(255,255,255,0.04)' }}>
       <p className="font-mono text-[9px] uppercase tracking-wider" style={{ color: 'rgba(255,255,255,0.3)' }}>
         {label}
       </p>
-      <p className="mt-1 font-display text-[22px] font-bold leading-none" style={{ color: colors[accent] }}>
-        {value}
-      </p>
+      <div className="mt-1 flex items-center gap-1.5">
+        {pulsing && (
+          <span className="pulse-dot size-1.5 shrink-0 rounded-full" style={{ background: colors[accent] }} />
+        )}
+        <p className="font-display text-[22px] font-bold leading-none" style={{ color: colors[accent] }}>
+          {value}
+        </p>
+      </div>
       <p className="mt-0.5 font-mono text-[9px]" style={{ color: 'rgba(255,255,255,0.25)' }}>
         {sub}
       </p>
@@ -273,14 +296,11 @@ function KpiCell({
   );
 }
 
-function Row({ label, value, highlight }: { label: string; value: string; highlight?: boolean }) {
+function MockRow({ label, value, highlight }: { label: string; value: string; highlight?: boolean }) {
   return (
     <div className="flex items-center justify-between">
       <dt style={{ color: 'rgba(255,255,255,0.3)' }}>{label}</dt>
-      <dd
-        className={highlight ? 'font-semibold' : ''}
-        style={{ color: highlight ? 'var(--ai)' : 'rgba(255,255,255,0.65)' }}
-      >
+      <dd className={highlight ? 'font-semibold' : ''} style={{ color: highlight ? 'var(--ai)' : 'rgba(255,255,255,0.65)' }}>
         {value}
       </dd>
     </div>

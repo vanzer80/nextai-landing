@@ -4,15 +4,114 @@ import { HeroMock } from './HeroMock';
 import { DEMO_HREF } from '../config';
 
 const trustSignals = [
-  { icon: WifiOff,      label: 'Funciona offline',      detail: 'sincroniza quando a conexão volta' },
-  { icon: ShieldCheck,  label: 'Dados isolados',         detail: 'cada empresa enxerga só a sua operação' },
-  { icon: Zap,          label: 'Ativo em uma semana',    detail: 'sem substituir o que já roda' },
+  { icon: WifiOff,     label: 'Funciona offline',   detail: 'sincroniza quando a conexão volta' },
+  { icon: ShieldCheck, label: 'Dados isolados',      detail: 'cada empresa enxerga só a sua operação' },
+  { icon: Zap,         label: 'Ativo em uma semana', detail: 'sem substituir o que já roda' },
 ] as const;
+
+/* Partículas ao redor da orb */
+const PARTICLES = [
+  { top: '14%', left: '22%', size: 2.5, delay: 0,   dur: 4.2, c: 'primary' },
+  { top: '72%', left: '12%', size: 2,   delay: 1.4, dur: 5.0, c: 'ai' },
+  { top: '58%', left: '82%', size: 3,   delay: 0.7, dur: 4.5, c: 'primary' },
+  { top: '18%', left: '68%', size: 2,   delay: 2.1, dur: 3.8, c: 'ai' },
+  { top: '88%', left: '52%', size: 2.5, delay: 0.3, dur: 4.8, c: 'primary' },
+  { top: '42%', left: '6%',  size: 2,   delay: 1.8, dur: 5.2, c: 'ai' },
+  { top: '8%',  left: '48%', size: 2,   delay: 1.0, dur: 4.0, c: 'primary' },
+  { top: '65%', left: '38%', size: 1.5, delay: 2.4, dur: 4.6, c: 'ai' },
+] as const;
+
+function AiOrb() {
+  return (
+    <div className="relative size-[360px]" aria-hidden>
+      {/* SVG — anéis orbitais */}
+      <svg
+        className="absolute inset-0 size-full"
+        viewBox="0 0 340 340"
+        style={{ overflow: 'visible' }}
+      >
+        <defs>
+          <filter id="gp" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="4" result="b" />
+            <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+          <filter id="ga" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="3" result="b" />
+            <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+        </defs>
+
+        {/* Anel externo estático (guia sutil) */}
+        <circle cx="170" cy="170" r="156" fill="none" stroke="rgba(59,111,246,0.08)" strokeWidth="1" />
+
+        {/* Anel externo — spin com ponto luminoso */}
+        <g className="orb-spin" style={{ transformOrigin: '170px 170px' }}>
+          <circle cx="170" cy="170" r="156" fill="none" stroke="rgba(59,111,246,0.28)" strokeWidth="1.5" strokeDasharray="28 955" strokeLinecap="round" />
+          <circle cx="326" cy="170" r="5.5" fill="#3b6ff6" filter="url(#gp)" />
+          <circle cx="326" cy="170" r="3"   fill="#6896ff" />
+        </g>
+
+        {/* Anel médio — spin reverso */}
+        <circle cx="170" cy="170" r="120" fill="none" stroke="rgba(47,224,206,0.06)" strokeWidth="1" />
+        <g className="orb-spin-r" style={{ transformOrigin: '170px 170px' }}>
+          <circle cx="170" cy="170" r="120" fill="none" stroke="rgba(47,224,206,0.25)" strokeWidth="1.5" strokeDasharray="20 735" strokeLinecap="round" />
+          <circle cx="170" cy="50"  r="4.5" fill="#2fe0ce" filter="url(#ga)" />
+          <circle cx="170" cy="50"  r="2.5" fill="#80f0e5" />
+        </g>
+
+        {/* Anel interno — spin lento */}
+        <circle cx="170" cy="170" r="82" fill="none" stroke="rgba(59,111,246,0.05)" strokeWidth="1" />
+        <g style={{ transformOrigin: '170px 170px', animation: 'orb-spin 32s linear infinite' }}>
+          <circle cx="170" cy="170" r="82" fill="none" stroke="rgba(59,111,246,0.18)" strokeWidth="1" strokeDasharray="10 504" strokeLinecap="round" />
+        </g>
+      </svg>
+
+      {/* Core glow — camada desfocada */}
+      <div
+        className="orb-drift absolute"
+        style={{
+          inset: '96px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle at 38% 32%, color-mix(in srgb, var(--primary) 75%, transparent) 0%, color-mix(in srgb, var(--ai) 40%, transparent) 45%, transparent 70%)',
+          boxShadow: '0 0 55px -5px color-mix(in srgb, var(--primary) 65%, transparent), 0 0 110px -20px color-mix(in srgb, var(--ai) 40%, transparent)',
+          filter: 'blur(3px)',
+        }}
+      />
+
+      {/* Core sólido central */}
+      <div
+        className="absolute"
+        style={{
+          inset: '118px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle at 38% 32%, color-mix(in srgb, var(--primary) 100%, white) 0%, color-mix(in srgb, var(--ai) 80%, var(--primary)) 100%)',
+        }}
+      />
+
+      {/* Partículas */}
+      {PARTICLES.map((p, i) => (
+        <div
+          key={i}
+          className="absolute rounded-full"
+          style={{
+            top: p.top,
+            left: p.left,
+            width: `${p.size}px`,
+            height: `${p.size}px`,
+            background: p.c === 'primary' ? 'var(--primary)' : 'var(--ai)',
+            boxShadow: p.c === 'primary' ? '0 0 7px var(--primary)' : '0 0 6px var(--ai)',
+            animation: `particle-up ${p.dur}s ease-out ${p.delay}s infinite`,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
 
 export function Hero() {
   return (
     <section id="topo" className="relative overflow-hidden pt-28 sm:pt-36">
-      {/* Multi-glow background */}
+      {/* Background: blueprint + glows */}
       <div
         aria-hidden
         className="blueprint pointer-events-none absolute inset-0 -z-10"
@@ -20,19 +119,21 @@ export function Hero() {
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-32 right-[-5%] -z-10 size-[55rem] rounded-full blur-[130px]"
-        style={{ background: 'radial-gradient(circle, color-mix(in srgb, var(--primary) 18%, transparent), transparent 70%)' }}
+        className="pointer-events-none absolute -top-32 right-[-5%] -z-10 size-[60rem] rounded-full blur-[140px]"
+        style={{ background: 'radial-gradient(circle, color-mix(in srgb, var(--primary) 16%, transparent), transparent 70%)' }}
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute top-[40%] -left-32 -z-10 size-[35rem] rounded-full blur-[100px]"
-        style={{ background: 'radial-gradient(circle, color-mix(in srgb, var(--ai) 8%, transparent), transparent 70%)' }}
+        className="pointer-events-none absolute top-[40%] -left-32 -z-10 size-[36rem] rounded-full blur-[100px]"
+        style={{ background: 'radial-gradient(circle, color-mix(in srgb, var(--ai) 7%, transparent), transparent 70%)' }}
       />
 
-      <Container className="grid items-center gap-x-12 gap-y-14 pb-24 lg:grid-cols-[54%_46%] lg:pb-32">
+      <Container className="grid items-center gap-x-12 gap-y-14 pb-24 lg:grid-cols-[52%_48%] lg:pb-32">
+        {/* ── Coluna esquerda: texto ── */}
         <div>
-          {/* Eyebrow — pill badge */}
-          <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.15em]"
+          {/* Eyebrow pill badge */}
+          <div
+            className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.15em]"
             style={{
               background: 'color-mix(in srgb, var(--primary) 10%, transparent)',
               border: '1px solid color-mix(in srgb, var(--primary) 25%, transparent)',
@@ -44,7 +145,7 @@ export function Hero() {
           </div>
 
           {/* Headline */}
-          <h1 className="mt-6 text-balance font-bold leading-[1.02] tracking-[-0.03em] text-[2.7rem] sm:text-[3.7rem]">
+          <h1 className="mt-6 text-balance font-bold leading-[1.02] tracking-[-0.03em] text-[2.7rem] sm:text-[3.75rem]">
             A operação de campo{' '}
             <span className="text-gradient-primary">inteira em um sistema.</span>
           </h1>
@@ -82,15 +183,27 @@ export function Hero() {
           </ul>
         </div>
 
-        <div className="lg:pl-4">
-          <HeroMock />
+        {/* ── Coluna direita: Orb 3D + Dashboard ── */}
+        <div className="relative lg:pl-4">
+          {/* AI Orb — background layer (só no desktop) */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 z-0 hidden items-center justify-center lg:flex"
+          >
+            <AiOrb />
+          </div>
+
+          {/* Dashboard — foreground layer */}
+          <div className="relative z-10">
+            <HeroMock />
+          </div>
         </div>
       </Container>
 
-      {/* Bottom fade into next section */}
+      {/* Bottom fade */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-28"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-32"
         style={{ background: 'linear-gradient(to top, var(--bg), transparent)' }}
       />
     </section>
