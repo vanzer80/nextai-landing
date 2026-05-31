@@ -10,12 +10,12 @@ const stories = [
   {
     icon: LayoutDashboard,
     tag: 'A manhã do gestor',
-    text: '8h. O gestor abre o painel antes do café. Duas equipes ainda não registraram a primeira OS do dia; uma terceira tem um chamado com prazo estourando em duas horas. Em vez de enviar "alguém me manda um status?" para o grupo, ele já sabe para onde mandar reforço — e manda.',
+    text: '8h. O gestor abre o painel antes do café. Duas equipes ainda não registraram a primeira ordem de serviço do dia; uma terceira tem um chamado com prazo estourando em duas horas. Em vez de enviar "alguém me manda um status?" para o grupo, ele já sabe para onde mandar reforço — e manda.',
   },
   {
     icon: Mic,
     tag: 'O relatório falado',
-    text: 'O técnico termina o reparo, aperta o microfone e narra o que fez: peça trocada, horário de início e fim, condição do equipamento ao fechar. Quando chega ao carro, o relatório já está escrito, organizado e vinculado à OS. Nada sobrou para digitar de volta em casa, à noite.',
+    text: 'O técnico termina o reparo, aperta o microfone e narra o que fez: peça trocada, horário de início e fim, condição do equipamento ao fechar. Quando chega ao carro, o relatório já está escrito, organizado e vinculado à ordem de serviço. Nada sobrou para digitar de volta em casa, à noite.',
   },
 ] as const;
 

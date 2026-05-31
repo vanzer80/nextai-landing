@@ -32,7 +32,7 @@ export function Hero() {
           <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted">
             Ordens de serviço espalhadas em grupos, comprovantes chegando como print ou áudio,
             planilha de reembolso montada na mão toda sexta. Com o NextAI, o técnico registra
-            a OS e a despesa pelo celular — com voz e foto. A IA organiza os campos. O gestor
+            a ordem de serviço e a despesa pelo celular — com voz e foto. A IA organiza os campos. O gestor
             aprova com trilha completa. Funciona sem sinal; sincroniza quando a conexão volta.
           </p>
 
@@ -43,7 +43,7 @@ export function Hero() {
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
               </ButtonLink>
               <p className="mt-2 font-mono text-[11px] text-muted">
-                30 min · com os seus tipos de OS e despesa na tela
+                30 min · com os seus tipos de ordem de serviço e despesa na tela
               </p>
             </div>
             <ButtonLink href="#fluxo" variant="secondary" size="lg" className="self-start">

@@ -7,7 +7,7 @@ const pillars = [
     title: 'Execução em campo',
     tagline: 'O técnico registra no ato. Sem depender de conexão ou de lembrar mais tarde.',
     points: [
-      'A OS é aberta no celular logo ao chegar ao local — com checklist, fotos e categoria do serviço já configurados.',
+      'A ordem de serviço é aberta no celular logo ao chegar ao local — com checklist, fotos e categoria do serviço já configurados.',
       'O comprovante é fotografado ali mesmo, antes de a nota sumir no bolso ou ficar esquecida no banco do carro.',
       'Área sem sinal no subsolo, na fábrica ou em obra? O registro fica salvo e sobe sozinho quando a conexão volta.',
     ],
@@ -27,7 +27,7 @@ const pillars = [
     title: 'Visão em tempo real',
     tagline: 'O painel mostra o que precisa de atenção — não tudo de uma vez.',
     points: [
-      'A primeira tela do dia exibe quantas OS foram abertas, quantas fecharam e quais estão paradas há mais tempo do que deveriam.',
+      'A primeira tela do dia exibe quantas ordens de serviço foram abertas, quantas fecharam e quais estão paradas há mais tempo do que deveriam.',
       'SLA prestes a estourar aparece com destaque antes de virar problema e atraso no atendimento.',
       'Relatórios por equipe, unidade ou período disponíveis sem o financeiro reorganizar nenhuma planilha.',
     ],

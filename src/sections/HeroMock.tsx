@@ -27,14 +27,14 @@ export function HeroMock() {
         </div>
 
         <div className="grid grid-cols-3 gap-3 p-4">
-          <Kpi label="OS abertas" value="24" foot="hoje" />
+          <Kpi label="Ordens de serviço abertas" value="24" foot="hoje" />
           <Kpi label="SLA em risco" value="3" foot="próx. 4h" tone="alert" />
           <Kpi label="A aprovar" value="R$ 8.420" foot="6 reembolsos" />
 
           {/* gráfico */}
           <div className="col-span-2 rounded-xl border border-border bg-card2/40 p-3.5">
             <div className="mb-3 flex items-center justify-between">
-              <span className="text-xs font-medium">OS concluídas · 7 dias</span>
+              <span className="text-xs font-medium">Ordens de serviço concluídas · 7 dias</span>
               <span className="inline-flex items-center gap-1 font-mono text-[10px] text-success">
                 <TrendingUp className="size-3" /> +18%
               </span>

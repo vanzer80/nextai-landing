@@ -11,7 +11,7 @@ export function Results() {
         <SectionTitle
           eyebrow="O que muda na prática"
           title="O que os gestores percebem nas primeiras semanas de uso."
-          intro="Cada demonstração mostra como essas mudanças se aplicam à sua operação — com os seus tipos de OS, as suas categorias de despesa e as suas regras de aprovação."
+          intro="Cada demonstração mostra como essas mudanças se aplicam à sua operação — com os seus tipos de ordem de serviço, as suas categorias de despesa e as suas regras de aprovação."
         />
 
         {/* Cards antes/depois */}
@@ -84,7 +84,7 @@ export function Results() {
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
           </ButtonLink>
           <p className="mt-3 font-mono text-[11px] text-muted">
-            30 min · com os seus tipos de OS e despesa na tela
+            30 min · com os seus tipos de ordem de serviço e despesa na tela
           </p>
         </div>
       </Container>

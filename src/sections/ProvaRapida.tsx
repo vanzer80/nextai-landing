@@ -6,7 +6,7 @@ export function ProvaRapida() {
       <Container>
         <p className="mx-auto max-w-3xl text-center text-pretty text-base leading-relaxed text-muted">
           Equipes de manutenção industrial, facilities prediais e assistência técnica usam o NextAI para
-          fechar OS e reembolso no mesmo dia — em vez de empurrar para o fim do mês e caçar comprovante
+          fechar ordem de serviço e reembolso no mesmo dia — em vez de empurrar para o fim do mês e caçar comprovante
           por mensagem na sexta.
         </p>
       </Container>

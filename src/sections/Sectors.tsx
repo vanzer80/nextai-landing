@@ -7,8 +7,8 @@ const sectors = [
     title: 'Manutenção industrial',
     pain: 'Histórico de equipamento espalhado, ordens de parada sem rastreabilidade e comprovantes de peça que somem antes do fechamento.',
     points: [
-      'A OS abre vinculada ao ativo e ao técnico, com histórico de intervenções anteriores na mesma tela.',
-      'Requisição de peças sai da OS para compras com foto, quantidade e descrição técnica — sem ligação extra.',
+      'A ordem de serviço abre vinculada ao ativo e ao técnico, com histórico de intervenções anteriores na mesma tela.',
+      'Requisição de peças sai da ordem de serviço para compras com foto, quantidade e descrição técnica — sem ligação extra.',
       'Relatório de produtividade por equipe e por equipamento fecha no sistema, sem planilha paralela.',
     ],
   },
@@ -25,9 +25,9 @@ const sectors = [
   {
     icon: Wrench,
     title: 'Assistência técnica',
-    pain: 'OS dependendo de ligação para atualizar status, histórico perdido e cliente sem visibilidade do prazo.',
+    pain: 'Ordem de serviço dependendo de ligação para atualizar status, histórico perdido e cliente sem visibilidade do prazo.',
     points: [
-      'A OS registra sintoma, diagnóstico, peças e resolução em um único documento — acessível depois.',
+      'A ordem de serviço registra sintoma, diagnóstico, peças e resolução em um único documento — acessível depois.',
       'O técnico finaliza com foto e assinatura eletrônica do cliente direto no celular, no local.',
       'Histórico por equipamento disponível antes de abrir um novo chamado — sem consultar papel ou e-mail.',
     ],
@@ -50,7 +50,7 @@ export function Sectors() {
       <Container>
         <SectionTitle
           eyebrow="Setores"
-          title="O problema é parecido. O que muda é o tipo de OS."
+          title="O problema é parecido. O que muda é o tipo de ordem de serviço."
           intro="Conversas soltas, planilhas improvisadas e aprovações sem rastro aparecem em quase todo segmento de campo. O NextAI resolve o fluxo no contexto de cada operação."
         />
 

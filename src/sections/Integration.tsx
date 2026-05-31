@@ -3,7 +3,7 @@ import { Container, Eyebrow } from '../components/ui';
 
 const bullets = [
   { k: 'Começa com uma equipe', v: 'expande quando os resultados aparecerem' },
-  { k: 'Importa o que você já tem', v: 'clientes, equipamentos e histórico de OS' },
+  { k: 'Importa o que você já tem', v: 'clientes, equipamentos e histórico de ordens de serviço' },
   { k: 'Onboarding com estrutura', v: 'técnicos aprendem em minutos; gestores, em uma conversa' },
 ] as const;
 
@@ -18,13 +18,13 @@ export function Integration() {
           </h2>
           <div className="mt-5 space-y-4 text-[15px] leading-relaxed text-muted">
             <p>
-              O financeiro continua no ERP e a diretoria continua no BI. O NextAI entrega OS fechadas
+              O financeiro continua no ERP e a diretoria continua no BI. O NextAI entrega ordens de serviço fechadas
               e reembolsos aprovados para esses sistemas em PDF, Excel ou por integração direta —
               conforme o que cada empresa já utiliza. Ninguém precisa mudar de ferramenta para parar
               de copiar dado de uma tela para outra.
             </p>
             <p>
-              A entrada é por partes. Começa com uma equipe, com os seus tipos de OS, categorias de
+              A entrada é por partes. Começa com uma equipe, com os seus tipos de ordem de serviço, categorias de
               despesa e regras de aprovação já configurados. Quando essa frente está funcionando de
               forma consistente, entra a próxima. A saída dos fluxos improvisados acontece equipe por
               equipe, sem interromper a operação no meio do caminho.

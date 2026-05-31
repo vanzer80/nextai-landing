@@ -21,9 +21,9 @@ export const OUTCOMES: Outcome[] = [
     after: 'O técnico fotografa no campo; o reembolso existe com valor, favorecido e categoria antes de ele guardar o celular.',
   },
   {
-    label: 'Status da OS',
-    before: '"Alguém me manda o status da OS do João?" — no grupo, sem resposta rápida.',
-    after: 'O painel mostra em tempo real quais OS fecharam, quais estão paradas e quais estão com prazo estourando.',
+    label: 'Status da ordem de serviço',
+    before: '"Alguém me manda o status da ordem de serviço do João?" — no grupo, sem resposta rápida.',
+    after: 'O painel mostra em tempo real quais ordens de serviço fecharam, quais estão paradas e quais estão com prazo estourando.',
   },
   {
     label: 'Fechamento do mês',

@@ -27,9 +27,9 @@ export const METRICS: Metric[] = [
   },
   {
     value: null,
-    label: 'Percentual de OS fechadas com todos os dados no mesmo dia do atendimento — sem precisar cobrar informação depois.',
+    label: 'Percentual de ordens de serviço fechadas com todos os dados no mesmo dia do atendimento — sem precisar cobrar informação depois.',
     collection:
-      'Medir: (OS com status "aprovado" na mesma data de abertura) / (total de OS abertas no período). Extrair do painel Analytics > OS por dia.',
+      'Medir: (ordens de serviço com status "aprovado" na mesma data de abertura) / (total de ordens de serviço abertas no período). Extrair do painel Analytics > Ordens de serviço por dia.',
   },
   {
     value: null,
@@ -39,8 +39,8 @@ export const METRICS: Metric[] = [
   },
   {
     value: null,
-    label: 'Horas por semana que o supervisor gasta consolidando OS e despesas — antes de ter um lugar único onde isso chega pronto.',
+    label: 'Horas por semana que o supervisor gasta consolidando ordens de serviço e despesas — antes de ter um lugar único onde isso chega pronto.',
     collection:
-      'Medir via pergunta direta ao supervisor na semana 4: "Quanto tempo você gastava consolidando OS e reembolsos manualmente por semana?"',
+      'Medir via pergunta direta ao supervisor na semana 4: "Quanto tempo você gastava consolidando ordens de serviço e reembolsos manualmente por semana?"',
   },
 ];

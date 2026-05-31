@@ -17,7 +17,7 @@ export function FinalCta() {
               id="cta-title"
               className="text-balance text-[1.9rem] font-bold leading-[1.1] text-on-primary sm:text-[2.6rem]"
             >
-              Traga uma OS e um reembolso da sua equipe. A gente fecha os dois na sua frente.
+              Traga uma ordem de serviço e um reembolso da sua equipe. A gente fecha os dois na sua frente.
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-pretty text-lg text-on-primary/80">
               Sem apresentação genérica. Você mostra um caso real da sua operação e vê exatamente como
@@ -25,7 +25,7 @@ export function FinalCta() {
             </p>
             <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <ButtonLink href={DEMO_HREF} variant="invert" size="lg">
-                Ver o NextAI fechar uma OS e um reembolso
+                Ver o NextAI fechar uma ordem de serviço e um reembolso
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
               </ButtonLink>
               <ButtonLink
