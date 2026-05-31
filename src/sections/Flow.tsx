@@ -13,6 +13,7 @@ const steps = [
       'Fotografa o comprovante de despesa na hora — nota fiscal, recibo ou cupom, tanto faz.',
       'Sem sinal no local? Registra normalmente; o sistema sincroniza quando a conexão volta.',
     ],
+    accent: 'primary',
   },
   {
     n: '02',
@@ -24,6 +25,7 @@ const steps = [
       'O técnico narra o que fez por voz; o relatório da ordem de serviço sai estruturado e vinculado ao chamado.',
       'O sistema sinaliza quando falta informação, o comprovante está ilegível ou o valor não bate.',
     ],
+    accent: 'ai',
   },
   {
     n: '03',
@@ -35,12 +37,13 @@ const steps = [
       'A ordem de serviço aparece com histórico de fotos, serviços e peças — tudo no mesmo lugar, sem juntar conversas.',
       'Cada aprovação registra quem decidiu e quando. O financeiro recebe pronto para o ERP ou planilha.',
     ],
+    accent: 'success',
   },
 ] as const;
 
 export function Flow() {
   return (
-    <section id="fluxo" className="border-y border-border bg-surface py-24 sm:py-28">
+    <section id="fluxo" className="border-y py-24 sm:py-28" style={{ borderColor: 'var(--border)', background: 'var(--surface)' }}>
       <Container>
         <SectionTitle
           eyebrow="Como funciona"
@@ -48,36 +51,80 @@ export function Flow() {
         />
 
         <div className="relative mt-14 grid gap-5 md:grid-cols-3">
+          {/* Connector line */}
           <div
             aria-hidden
-            className="absolute left-0 right-0 top-9 hidden h-px bg-gradient-to-r from-transparent via-border-subtle to-transparent md:block"
+            className="absolute left-0 right-0 top-9 hidden h-px md:block"
+            style={{ background: 'linear-gradient(to right, transparent, var(--border), transparent)' }}
           />
-          {steps.map((s, i) => (
-            <Reveal key={s.n} delay={i * 90} className="relative rounded-2xl border border-border bg-card p-6">
-              <div className="flex items-center justify-between">
-                <span className="grid size-12 place-items-center rounded-xl bg-primary text-on-primary shadow-[0_8px_24px_-8px_var(--primary)]">
-                  <s.icon className="size-5" />
-                </span>
-                <span className="font-display text-4xl font-bold text-text/[0.08]">{s.n}</span>
-              </div>
-              <h3 className="mt-5 text-lg font-semibold">{s.title}</h3>
-              <p className="mt-1.5 text-sm font-medium text-primary">{s.impact}</p>
-              <ul className="mt-4 space-y-2.5">
-                {s.points.map((point) => (
-                  <li key={point} className="flex gap-2.5 text-sm leading-relaxed text-muted">
-                    <span aria-hidden className="mt-2 size-1 shrink-0 rounded-full bg-primary/60" />
-                    {point}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          ))}
+
+          {steps.map((s, i) => {
+            const Icon = s.icon;
+            const accentColor =
+              s.accent === 'primary' ? 'var(--primary)' : s.accent === 'ai' ? 'var(--ai)' : 'var(--success)';
+            const accentBg =
+              s.accent === 'primary'
+                ? 'color-mix(in srgb, var(--primary) 12%, transparent)'
+                : s.accent === 'ai'
+                ? 'color-mix(in srgb, var(--ai) 12%, transparent)'
+                : 'color-mix(in srgb, var(--success) 12%, transparent)';
+
+            return (
+              <Reveal key={s.n} delay={i * 100}>
+                <div
+                  className="group relative h-full overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:-translate-y-0.5"
+                  style={{
+                    background: 'var(--card)',
+                    border: '1px solid var(--border)',
+                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+                  }}
+                >
+                  <div className="flex items-center justify-between">
+                    <span
+                      className="grid size-12 place-items-center rounded-xl transition-all duration-300 group-hover:scale-105"
+                      style={{
+                        background: accentBg,
+                        color: accentColor,
+                        boxShadow: `0 0 0 1px color-mix(in srgb, ${accentColor} 20%, transparent)`,
+                      }}
+                    >
+                      <Icon className="size-5" />
+                    </span>
+                    <span
+                      className="font-display text-[3.5rem] font-bold leading-none tracking-tighter opacity-[0.06]"
+                      style={{ color: accentColor }}
+                    >
+                      {s.n}
+                    </span>
+                  </div>
+
+                  <h3 className="mt-5 text-lg font-semibold">{s.title}</h3>
+                  <p className="mt-1.5 text-sm font-medium" style={{ color: accentColor }}>
+                    {s.impact}
+                  </p>
+
+                  <ul className="mt-4 space-y-2.5">
+                    {s.points.map((point) => (
+                      <li key={point} className="flex gap-2.5 text-sm leading-relaxed text-muted">
+                        <span
+                          aria-hidden
+                          className="mt-2 size-1 shrink-0 rounded-full"
+                          style={{ background: accentColor, opacity: 0.5 }}
+                        />
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
 
         <div className="mt-12 text-center">
           <ButtonLink href={DEMO_HREF} variant="primary" size="lg">
             Ver esse fluxo com os seus dados
-            <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
           </ButtonLink>
         </div>
       </Container>

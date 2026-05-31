@@ -1,77 +1,171 @@
-import { Bell, Camera, MapPin, TrendingUp } from 'lucide-react';
-import { AiTag, cn } from '../components/ui';
+import { Bell, Camera, MapPin, TrendingUp, CheckCircle2, AlertTriangle, Clock } from 'lucide-react';
+import { AiTag } from '../components/ui';
 
-/** Mockup do produto — UI estática em SVG/CSS, dados ilustrativos de operação. */
 export function HeroMock() {
-  const bars = [42, 55, 48, 70, 61, 84, 76];
+  const bars = [38, 52, 44, 67, 58, 81, 73];
   const max = Math.max(...bars);
   const dias = ['S', 'T', 'Q', 'Q', 'S', 'S', 'D'];
 
   return (
-    <div className="relative">
-      <div aria-hidden className="absolute -inset-8 -z-10 rounded-[3rem] bg-primary/15 blur-[80px]" />
+    <div className="relative select-none" aria-hidden>
+      {/* Ambient glows */}
+      <div className="pointer-events-none absolute -inset-16 -z-10 rounded-[5rem] bg-primary/10 blur-[120px]" />
+      <div className="pointer-events-none absolute -bottom-12 -right-12 -z-10 size-[22rem] rounded-full bg-ai/6 blur-[90px]" />
 
-      {/* Janela principal */}
-      <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-2xl shadow-black/40 [transform:perspective(1600px)_rotateY(-7deg)_rotateX(2deg)]">
-        <div className="flex items-center gap-3 border-b border-border bg-card2/60 px-4 py-3">
+      {/* ── Main dashboard panel ── */}
+      <div
+        className="overflow-hidden rounded-2xl shadow-[0_40px_100px_-20px_rgba(0,0,0,0.85),inset_0_1px_0_rgba(255,255,255,0.06)]"
+        style={{
+          background: 'linear-gradient(160deg, #0f1829 0%, #0a1020 100%)',
+          border: '1px solid rgba(255,255,255,0.07)',
+          transform: 'perspective(1300px) rotateY(-9deg) rotateX(3deg)',
+        }}
+      >
+        {/* Window chrome */}
+        <div
+          className="flex items-center gap-3 px-4 py-3"
+          style={{ background: 'rgba(255,255,255,0.025)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}
+        >
           <div className="flex gap-1.5">
-            <span className="size-2.5 rounded-full bg-muted/30" />
-            <span className="size-2.5 rounded-full bg-muted/30" />
-            <span className="size-2.5 rounded-full bg-muted/30" />
+            <span className="size-2.5 rounded-full bg-[#ff5f57]/60" />
+            <span className="size-2.5 rounded-full bg-[#ffbd2e]/60" />
+            <span className="size-2.5 rounded-full bg-[#28c840]/60" />
           </div>
-          <span className="font-mono text-[11px] text-muted">app.nextai · operação · ao vivo</span>
-          <span className="ml-auto flex items-center gap-1.5 text-muted">
-            <Bell className="size-4" />
-            <span className="grid size-4 place-items-center rounded-full bg-alert text-[9px] font-bold text-black">3</span>
-          </span>
+          <div className="flex flex-1 items-center justify-center">
+            <span
+              className="rounded-md px-3 py-1 font-mono text-[10px]"
+              style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.05)', color: 'rgba(255,255,255,0.3)' }}
+            >
+              app.nextai.com.br
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="flex items-center gap-1.5 rounded-full px-2 py-0.5 font-mono text-[9px] font-medium text-success" style={{ background: 'rgba(52,199,123,0.12)' }}>
+              <span className="pulse-dot size-1.5 rounded-full bg-success" />
+              ao vivo
+            </span>
+            <div className="relative">
+              <Bell className="size-4" style={{ color: 'rgba(255,255,255,0.25)' }} />
+              <span className="absolute -right-0.5 -top-0.5 grid size-3.5 place-items-center rounded-full bg-danger font-mono text-[7px] font-bold text-white">3</span>
+            </div>
+          </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-3 p-4">
-          <Kpi label="Ordens de serviço abertas" value="24" foot="hoje" />
-          <Kpi label="SLA em risco" value="3" foot="próx. 4h" tone="alert" />
-          <Kpi label="A aprovar" value="R$ 8.420" foot="6 reembolsos" />
+        {/* Dashboard sub-header */}
+        <div className="flex items-center justify-between px-5 py-3" style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+          <div>
+            <p className="font-mono text-[10px] uppercase tracking-widest" style={{ color: 'rgba(255,255,255,0.3)' }}>
+              Painel de Operação
+            </p>
+            <p className="text-[13px] font-semibold" style={{ color: 'rgba(255,255,255,0.75)' }}>
+              Sáb, 31 Mai · 14:32
+            </p>
+          </div>
+          <button
+            className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 font-mono text-[10px] transition-colors"
+            style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.35)' }}
+          >
+            Hoje
+            <svg className="size-3" viewBox="0 0 12 12" fill="none">
+              <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+        </div>
 
-          {/* gráfico */}
-          <div className="col-span-2 rounded-xl border border-border bg-card2/40 p-3.5">
+        {/* KPI row */}
+        <div className="grid grid-cols-4" style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+          <KpiCell label="OS abertas" value="24" sub="hoje" accent="primary" />
+          <KpiCell label="SLA em risco" value="3" sub="próx. 4h" accent="danger" />
+          <KpiCell label="Aprovações" value="6" sub="pendentes" accent="warning" />
+          <KpiCell label="Reembolsos" value="R$8,4k" sub="+12% hoje" accent="success" />
+        </div>
+
+        {/* Chart + Queue */}
+        <div className="grid grid-cols-[1fr_140px]" style={{ borderTop: '0' }}>
+          {/* Bar chart */}
+          <div className="p-4" style={{ borderRight: '1px solid rgba(255,255,255,0.04)' }}>
             <div className="mb-3 flex items-center justify-between">
-              <span className="text-xs font-medium">Ordens de serviço concluídas · 7 dias</span>
-              <span className="inline-flex items-center gap-1 font-mono text-[10px] text-success">
-                <TrendingUp className="size-3" /> +18%
+              <span className="text-[11px] font-medium" style={{ color: 'rgba(255,255,255,0.45)' }}>
+                Ordens de serviço · 7 dias
+              </span>
+              <span className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-mono text-[9px] font-medium text-success" style={{ background: 'rgba(52,199,123,0.1)' }}>
+                <TrendingUp className="size-2.5" /> +18%
               </span>
             </div>
-            <div className="flex h-24 items-end gap-1.5">
+            <div className="flex h-[72px] items-end gap-1">
               {bars.map((b, i) => (
-                <div key={i} className="flex flex-1 flex-col items-center gap-1.5">
+                <div key={i} className="flex flex-1 flex-col items-center gap-1">
                   <div
-                    className={cn('w-full rounded-sm', i === 5 ? 'bg-primary' : 'bg-primary/35')}
-                    style={{ height: `${(b / max) * 100}%` }}
+                    className="w-full rounded-t-sm transition-all"
+                    style={{
+                      height: `${(b / max) * 100}%`,
+                      background:
+                        i === 5
+                          ? 'linear-gradient(to top, var(--primary), color-mix(in srgb, var(--primary) 60%, transparent))'
+                          : i === 6
+                          ? 'rgba(59,111,246,0.35)'
+                          : 'rgba(255,255,255,0.07)',
+                      boxShadow: i === 5 ? '0 0 12px -2px color-mix(in srgb, var(--primary) 50%, transparent)' : undefined,
+                    }}
                   />
-                  <span className="font-mono text-[9px] text-muted">{dias[i]}</span>
+                  <span className="font-mono text-[8px]" style={{ color: 'rgba(255,255,255,0.18)' }}>
+                    {dias[i]}
+                  </span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* fila de OS */}
-          <div className="rounded-xl border border-border bg-card2/40 p-3.5">
-            <span className="text-xs font-medium">Fila priorizada</span>
-            <ul className="mt-3 space-y-2.5">
+          {/* Priority queue */}
+          <div className="p-4">
+            <span className="text-[11px] font-medium" style={{ color: 'rgba(255,255,255,0.45)' }}>
+              Fila priorizada
+            </span>
+            <ul className="mt-2.5 space-y-2">
               {[
-                { id: 'OS-2041', tone: 'alert', label: 'SLA 1h' },
-                { id: 'OS-2039', tone: 'primary', label: 'Em campo' },
-                { id: 'OS-2036', tone: 'success', label: 'Concluída' },
+                { id: 'OS-2041', badge: 'SLA 1h', accent: 'danger', Icon: AlertTriangle },
+                { id: 'OS-2039', badge: 'Em campo', accent: 'primary', Icon: Clock },
+                { id: 'OS-2036', badge: 'Concluída', accent: 'success', Icon: CheckCircle2 },
               ].map((o) => (
-                <li key={o.id} className="flex items-center justify-between">
-                  <span className="font-mono text-[11px] text-muted">{o.id}</span>
+                <li
+                  key={o.id}
+                  className="rounded-xl p-2.5 transition-colors"
+                  style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)' }}
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-[9px]" style={{ color: 'rgba(255,255,255,0.35)' }}>
+                      {o.id}
+                    </span>
+                    <o.Icon
+                      className="size-2.5"
+                      style={{
+                        color:
+                          o.accent === 'danger'
+                            ? 'var(--danger)'
+                            : o.accent === 'primary'
+                            ? 'var(--primary)'
+                            : 'var(--success)',
+                      }}
+                    />
+                  </div>
                   <span
-                    className={cn(
-                      'rounded px-1.5 py-0.5 font-mono text-[9px]',
-                      o.tone === 'alert' && 'bg-alert/15 text-alert',
-                      o.tone === 'primary' && 'bg-primary/15 text-primary',
-                      o.tone === 'success' && 'bg-success/15 text-success',
-                    )}
+                    className="mt-1 inline-block rounded-md px-1.5 py-0.5 font-mono text-[8px] font-medium"
+                    style={{
+                      background:
+                        o.accent === 'danger'
+                          ? 'rgba(240,64,64,0.12)'
+                          : o.accent === 'primary'
+                          ? 'rgba(59,111,246,0.12)'
+                          : 'rgba(52,199,123,0.12)',
+                      color:
+                        o.accent === 'danger'
+                          ? 'var(--danger)'
+                          : o.accent === 'primary'
+                          ? 'var(--primary)'
+                          : 'var(--success)',
+                    }}
                   >
-                    {o.label}
+                    {o.badge}
                   </span>
                 </li>
               ))}
@@ -80,45 +174,115 @@ export function HeroMock() {
         </div>
       </div>
 
-      {/* Card flutuante: leitura por IA do comprovante */}
-      <div className="absolute -bottom-8 -left-6 w-[16.5rem] rounded-xl border border-ai/30 bg-card p-3.5 shadow-2xl shadow-ai/10 sm:-left-10">
+      {/* ── Floating AI extraction card ── */}
+      <div
+        className="hero-float absolute -bottom-10 -left-6 w-[15.5rem] rounded-2xl p-4 sm:-left-10"
+        style={{
+          background: 'linear-gradient(160deg, #0f1a2e 0%, #0a1020 100%)',
+          border: '1px solid rgba(47,224,206,0.15)',
+          boxShadow: '0 24px 60px -15px rgba(0,0,0,0.8), 0 0 0 1px rgba(47,224,206,0.06)',
+        }}
+      >
         <div className="flex items-center justify-between">
-          <span className="flex items-center gap-2 text-xs font-medium">
-            <span className="grid size-7 place-items-center rounded-md bg-ai/15 text-ai">
-              <Camera className="size-3.5" />
+          <div className="flex items-center gap-2">
+            <span
+              className="grid size-8 place-items-center rounded-xl"
+              style={{ background: 'rgba(47,224,206,0.1)', color: 'var(--ai)' }}
+            >
+              <Camera className="size-4" />
             </span>
-            Comprovante
-          </span>
+            <span className="text-[12px] font-semibold" style={{ color: 'rgba(255,255,255,0.8)' }}>
+              Comprovante
+            </span>
+          </div>
           <AiTag />
         </div>
-        <dl className="mt-3 space-y-1.5 font-mono text-[11px]">
-          <Row k="Valor" v="R$ 1.240,00" />
-          <Row k="Categoria" v="Combustível" />
-          <Row k="Pix" v="••••@posto.br" />
+        <dl
+          className="mt-3 space-y-1.5 rounded-xl p-2.5 font-mono text-[10px]"
+          style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)' }}
+        >
+          <Row label="Valor" value="R$ 1.240,00" highlight />
+          <Row label="Categoria" value="Combustível" />
+          <Row label="Pix" value="••••@posto.br" />
         </dl>
-        <div className="mt-2.5 flex items-center gap-1 text-[10px] text-muted">
-          <MapPin className="size-3" /> Lido da foto · sem digitação
+        <div className="mt-2.5 flex items-center gap-1.5 font-mono text-[9px]" style={{ color: 'rgba(255,255,255,0.25)' }}>
+          <MapPin className="size-3" style={{ color: 'rgba(47,224,206,0.5)' }} />
+          Lido da foto · sem digitação
+        </div>
+      </div>
+
+      {/* ── Floating approval notification ── */}
+      <div
+        className="hero-float-late absolute -right-4 top-10 rounded-2xl px-4 py-3 sm:-right-8"
+        style={{
+          background: 'linear-gradient(160deg, #0e1f14 0%, #0a1020 100%)',
+          border: '1px solid rgba(52,199,123,0.18)',
+          boxShadow: '0 16px 48px -12px rgba(0,0,0,0.7), 0 0 0 1px rgba(52,199,123,0.06)',
+        }}
+      >
+        <div className="flex items-center gap-2.5">
+          <span
+            className="grid size-8 place-items-center rounded-xl"
+            style={{ background: 'rgba(52,199,123,0.12)', color: 'var(--success)' }}
+          >
+            <CheckCircle2 className="size-4" />
+          </span>
+          <div>
+            <p className="text-[11px] font-semibold" style={{ color: 'rgba(255,255,255,0.85)' }}>
+              Aprovado
+            </p>
+            <p className="font-mono text-[9px]" style={{ color: 'rgba(255,255,255,0.3)' }}>
+              Reembolso #847 · agora
+            </p>
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-function Kpi({ label, value, foot, tone }: { label: string; value: string; foot: string; tone?: 'alert' }) {
+function KpiCell({
+  label,
+  value,
+  sub,
+  accent,
+}: {
+  label: string;
+  value: string;
+  sub: string;
+  accent: 'primary' | 'danger' | 'warning' | 'success';
+}) {
+  const colors = {
+    primary: 'var(--primary)',
+    danger: 'var(--danger)',
+    warning: 'var(--warning)',
+    success: 'var(--success)',
+  };
   return (
-    <div className="rounded-xl border border-border bg-card2/40 p-3.5">
-      <p className="text-[11px] text-muted">{label}</p>
-      <p className={cn('mt-1 font-display text-xl font-bold', tone === 'alert' && 'text-alert')}>{value}</p>
-      <p className="font-mono text-[9px] text-muted">{foot}</p>
+    <div className="px-4 py-3.5" style={{ borderRight: '1px solid rgba(255,255,255,0.04)' }}>
+      <p className="font-mono text-[9px] uppercase tracking-wider" style={{ color: 'rgba(255,255,255,0.3)' }}>
+        {label}
+      </p>
+      <p className="mt-1 font-display text-[22px] font-bold leading-none" style={{ color: colors[accent] }}>
+        {value}
+      </p>
+      <p className="mt-0.5 font-mono text-[9px]" style={{ color: 'rgba(255,255,255,0.25)' }}>
+        {sub}
+      </p>
     </div>
   );
 }
 
-function Row({ k, v }: { k: string; v: string }) {
+function Row({ label, value, highlight }: { label: string; value: string; highlight?: boolean }) {
   return (
     <div className="flex items-center justify-between">
-      <dt className="text-muted">{k}</dt>
-      <dd className="text-text">{v}</dd>
+      <dt style={{ color: 'rgba(255,255,255,0.3)' }}>{label}</dt>
+      <dd
+        className={highlight ? 'font-semibold' : ''}
+        style={{ color: highlight ? 'var(--ai)' : 'rgba(255,255,255,0.65)' }}
+      >
+        {value}
+      </dd>
     </div>
   );
 }

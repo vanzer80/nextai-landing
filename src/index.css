@@ -181,3 +181,50 @@
     transition-duration: 0.001ms !important;
   }
 }
+
+/* ─── FLOAT ANIMATIONS ───────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+
+.hero-float      { animation: float      5s ease-in-out infinite; }
+.hero-float-slow { animation: float-slow 7s ease-in-out infinite; }
+.hero-float-late { animation: float      5s ease-in-out 2.8s infinite; }
+.pulse-dot       { animation: pulse-dot  2s ease-in-out infinite; }
+
+/* ─── GRADIENT TEXT ──────────────────────────────────────── */
+.text-gradient-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--ai) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── GLASS SURFACE ──────────────────────────────────────── */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* ─── GLOW UTILITIES ─────────────────────────────────────── */
+.glow-primary {
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--primary) 20%, transparent),
+    0 8px 32px -8px color-mix(in srgb, var(--primary) 50%, transparent);
+}
+.glow-ai {
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--ai) 15%, transparent),
+    0 8px 32px -8px color-mix(in srgb, var(--ai) 30%, transparent);
+}
