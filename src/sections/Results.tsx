@@ -27,8 +27,8 @@ export function Results() {
     <section id="resultados" className="py-24 sm:py-28">
       <Container>
         <SectionTitle
-          eyebrow="O que muda na prática"
-          title="O que acontece quando a OS e o reembolso param de viver em conversas."
+          eyebrow="O que medimos com cada cliente"
+          title="O que muda quando a OS e o reembolso saem das conversas e entram num sistema."
         />
 
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -39,8 +39,9 @@ export function Results() {
             </Reveal>
           ))}
         </div>
-        <p className="mt-4 text-center font-mono text-[11px] text-muted">
-          Números medidos com cada cliente nas primeiras semanas de uso.
+        <p className="mt-4 text-center text-sm leading-relaxed text-muted">
+          Esses quatro indicadores são levantados com cada novo cliente nas primeiras semanas de uso.
+          Na demonstração, mostramos como ficaria a medição na sua operação.
         </p>
 
         <div className="mt-12 grid gap-4 lg:grid-cols-2">

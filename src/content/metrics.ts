@@ -21,25 +21,25 @@ export interface Metric {
 export const METRICS: Metric[] = [
   {
     value: null,
-    label: 'de redução no tempo entre a despesa acontecer e o reembolso ser aprovado',
+    label: 'Tempo médio entre a despesa acontecer e o reembolso ser aprovado — do comprovante fotografado até o gestor dar ok.',
     collection:
       'Medir: média de dias entre data da despesa e data de aprovação, antes vs. depois. Fonte: relatório de reembolsos do NextAI + relato do gestor na semana 4.',
   },
   {
     value: null,
-    label: 'das OS fechadas com todos os dados no mesmo dia do atendimento',
+    label: 'Percentual de OS fechadas com todos os dados no mesmo dia do atendimento — sem precisar cobrar informação depois.',
     collection:
       'Medir: (OS com status "aprovado" na mesma data de abertura) / (total de OS abertas no período). Extrair do painel Analytics > OS por dia.',
   },
   {
     value: null,
-    label: 'de queda nas devoluções de reembolso por informação incompleta ou ilegível',
+    label: 'Taxa de devolução de reembolso por dado incompleto ou ilegível — quanto do trabalho do financeiro é retrabalho.',
     collection:
       'Medir: (reembolsos devolvidos por dado faltando, mês anterior ao NextAI) vs. (mesmo indicador no 1º mês de uso). Perguntar ao financeiro na semana 6.',
   },
   {
     value: null,
-    label: 'horas por semana economizadas por supervisor em consolidação de planilha',
+    label: 'Horas por semana que o supervisor gasta consolidando OS e despesas — antes de ter um lugar único onde isso chega pronto.',
     collection:
       'Medir via pergunta direta ao supervisor na semana 4: "Quanto tempo você gastava consolidando OS e reembolsos manualmente por semana?"',
   },
