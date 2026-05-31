@@ -15,12 +15,13 @@ export function Faq() {
           {FAQ_ITEMS.map((f, i) => {
             const isOpen = open === i;
             return (
-              <div key={f.q}>
+              <div key={f.q} role="region" aria-labelledby={`faq-btn-${i}`}>
                 <button
+                  id={`faq-btn-${i}`}
                   type="button"
                   onClick={() => setOpen(isOpen ? null : i)}
                   aria-expanded={isOpen}
-                  className="flex w-full items-center justify-between gap-4 py-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-bg"
+                  className="flex w-full items-center justify-between gap-4 py-5 text-left transition-colors hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-bg"
                 >
                   <span className="font-medium">{f.q}</span>
                   <Plus

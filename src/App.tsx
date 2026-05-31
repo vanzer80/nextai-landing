@@ -10,6 +10,7 @@ import { Integration } from './sections/Integration';
 import { Faq } from './sections/Faq';
 import { FinalCta } from './sections/FinalCta';
 import { Footer } from './sections/Footer';
+import { MobileCtaBar } from './sections/MobileCtaBar';
 
 export default function App() {
   return (
@@ -44,6 +45,7 @@ export default function App() {
         <FinalCta />
       </main>
       <Footer />
+      <MobileCtaBar />
     </div>
   );
 }

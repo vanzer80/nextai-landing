@@ -88,11 +88,15 @@ export function HeroMock() {
         {/* KPI row */}
         <div className="grid grid-cols-4" style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
           <KpiCell label="OS abertas"  value="24"    sub="hoje"      accent="primary" />
-          {/* SLA com pulse ring */}
+          {/* SLA com sonar rings reais */}
           <div className="relative">
-            <div
-              className="ring-expand absolute inset-0 rounded-none opacity-0"
-              style={{ background: 'var(--danger)', zIndex: 0 }}
+            <span
+              className="ring-expand pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 size-9 rounded-full"
+              style={{ border: '1px solid rgba(240,64,64,0.55)' }}
+            />
+            <span
+              className="ring-expand pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 size-9 rounded-full"
+              style={{ border: '1px solid rgba(240,64,64,0.3)', animationDelay: '1.1s' }}
             />
             <KpiCell label="SLA em risco" value="3" sub="próx. 4h" accent="danger" pulsing />
           </div>
@@ -194,9 +198,9 @@ export function HeroMock() {
         </div>
       </div>
 
-      {/* ── Floating AI extraction card ── */}
+      {/* ── Floating AI extraction card (hidden on mobile to prevent overflow) ── */}
       <div
-        className="hero-float absolute -bottom-10 -left-6 w-[15.5rem] rounded-2xl p-4 sm:-left-10"
+        className="hero-float hidden sm:block absolute -bottom-10 -left-6 w-[15.5rem] rounded-2xl p-4 sm:-left-10"
         style={{
           background: 'linear-gradient(160deg, #0f1a2e 0%, #0a1020 100%)',
           border: '1px solid rgba(47,224,206,0.18)',
@@ -231,9 +235,9 @@ export function HeroMock() {
         </div>
       </div>
 
-      {/* ── Floating approval notification ── */}
+      {/* ── Floating approval notification (hidden on mobile) ── */}
       <div
-        className="hero-float-late absolute -right-4 top-10 rounded-2xl px-4 py-3 sm:-right-8"
+        className="hero-float-late hidden sm:block absolute -right-4 top-10 rounded-2xl px-4 py-3 sm:-right-8"
         style={{
           background: 'linear-gradient(160deg, #0e1f14 0%, #0a1020 100%)',
           border: '1px solid rgba(52,199,123,0.2)',

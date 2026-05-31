@@ -48,13 +48,13 @@ export function ProvaRapida() {
           <div className="hidden h-12 w-px md:block" style={{ background: 'rgba(255,255,255,0.06)' }} />
 
           {/* Right: stats */}
-          <div className="flex flex-wrap justify-center gap-8 md:gap-10">
+          <div className="flex flex-wrap justify-center gap-6 md:gap-10">
             {stats.map((s) => (
               <div key={s.label} className="text-center md:text-left">
-                <p className="font-display text-[1.6rem] font-bold leading-none tracking-tight text-gradient-primary">
+                <p className="font-display text-[1.35rem] font-bold leading-none tracking-tight text-gradient-primary sm:text-[1.6rem]">
                   {s.value}
                 </p>
-                <p className="mt-1.5 max-w-[140px] text-[11px] leading-snug text-muted">
+                <p className="mt-1.5 max-w-[130px] text-[11px] leading-snug text-muted">
                   {s.label}
                 </p>
               </div>

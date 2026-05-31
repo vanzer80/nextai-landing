@@ -19,10 +19,14 @@
       property="og:description"
       content="Do chamado à aprovação, com rastreabilidade de ponta a ponta. IA que lê comprovantes por foto ou voz. Funciona offline em campo."
     />
-    <!-- TODO: gerar PNG 1200x630 definitivo -->
-    <meta property="og:image" content="/og-image.svg" />
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://nextai-landing-gilt.vercel.app" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="/og-image.svg" />
+    <meta name="twitter:image" content="/og-image.png" />
+    <meta name="twitter:title" content="NextAI — A operação de campo inteira em um sistema só" />
+    <meta name="twitter:description" content="Do chamado à aprovação, com rastreabilidade de ponta a ponta. IA que lê comprovantes por foto ou voz. Funciona offline em campo." />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -45,6 +49,19 @@
   </head>
   <body>
     <div id="root"></div>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "NextAI",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web, iOS, Android (PWA)",
+      "description": "Sistema de gestão de campo com IA para manutenção industrial, facilities e assistência técnica. Ordens de serviço, reembolsos, comprovantes e aprovações em um único fluxo.",
+      "url": "https://nextai-landing-gilt.vercel.app",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL", "description": "Demonstração gratuita" },
+      "publisher": { "@type": "Organization", "name": "NextAI" }
+    }
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

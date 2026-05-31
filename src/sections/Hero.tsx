@@ -1,3 +1,4 @@
+import { useId } from 'react';
 import { ArrowRight, WifiOff, ShieldCheck, Zap } from 'lucide-react';
 import { ButtonLink, Container } from '../components/ui';
 import { HeroMock } from './HeroMock';
@@ -22,6 +23,8 @@ const PARTICLES = [
 ] as const;
 
 function AiOrb() {
+  const uid = useId().replace(/:/g, '_');
+
   return (
     <div className="relative size-[360px]" aria-hidden>
       {/* SVG — anéis orbitais */}
@@ -31,11 +34,12 @@ function AiOrb() {
         style={{ overflow: 'visible' }}
       >
         <defs>
-          <filter id="gp" x="-100%" y="-100%" width="300%" height="300%">
+          {/* IDs únicos por instância para evitar colisão no DOM */}
+          <filter id={`${uid}_gp`} x="-100%" y="-100%" width="300%" height="300%">
             <feGaussianBlur stdDeviation="4" result="b" />
             <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
           </filter>
-          <filter id="ga" x="-100%" y="-100%" width="300%" height="300%">
+          <filter id={`${uid}_ga`} x="-100%" y="-100%" width="300%" height="300%">
             <feGaussianBlur stdDeviation="3" result="b" />
             <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
           </filter>
@@ -45,23 +49,24 @@ function AiOrb() {
         <circle cx="170" cy="170" r="156" fill="none" stroke="rgba(59,111,246,0.08)" strokeWidth="1" />
 
         {/* Anel externo — spin com ponto luminoso */}
-        <g className="orb-spin" style={{ transformOrigin: '170px 170px' }}>
+        {/* transformBox: view-box garante rotação ao redor do centro do SVG em todos os browsers */}
+        <g className="orb-spin" style={{ transformOrigin: '170px 170px', transformBox: 'view-box' }}>
           <circle cx="170" cy="170" r="156" fill="none" stroke="rgba(59,111,246,0.28)" strokeWidth="1.5" strokeDasharray="28 955" strokeLinecap="round" />
-          <circle cx="326" cy="170" r="5.5" fill="#3b6ff6" filter="url(#gp)" />
+          <circle cx="326" cy="170" r="5.5" fill="#3b6ff6" filter={`url(#${uid}_gp)`} />
           <circle cx="326" cy="170" r="3"   fill="#6896ff" />
         </g>
 
         {/* Anel médio — spin reverso */}
         <circle cx="170" cy="170" r="120" fill="none" stroke="rgba(47,224,206,0.06)" strokeWidth="1" />
-        <g className="orb-spin-r" style={{ transformOrigin: '170px 170px' }}>
+        <g className="orb-spin-r" style={{ transformOrigin: '170px 170px', transformBox: 'view-box' }}>
           <circle cx="170" cy="170" r="120" fill="none" stroke="rgba(47,224,206,0.25)" strokeWidth="1.5" strokeDasharray="20 735" strokeLinecap="round" />
-          <circle cx="170" cy="50"  r="4.5" fill="#2fe0ce" filter="url(#ga)" />
+          <circle cx="170" cy="50"  r="4.5" fill="#2fe0ce" filter={`url(#${uid}_ga)`} />
           <circle cx="170" cy="50"  r="2.5" fill="#80f0e5" />
         </g>
 
         {/* Anel interno — spin lento */}
         <circle cx="170" cy="170" r="82" fill="none" stroke="rgba(59,111,246,0.05)" strokeWidth="1" />
-        <g style={{ transformOrigin: '170px 170px', animation: 'orb-spin 32s linear infinite' }}>
+        <g style={{ transformOrigin: '170px 170px', transformBox: 'view-box', animation: 'orb-spin 32s linear infinite' }}>
           <circle cx="170" cy="170" r="82" fill="none" stroke="rgba(59,111,246,0.18)" strokeWidth="1" strokeDasharray="10 504" strokeLinecap="round" />
         </g>
       </svg>
@@ -144,8 +149,8 @@ export function Hero() {
             Gestão de campo · manutenção e assistência técnica
           </div>
 
-          {/* Headline */}
-          <h1 className="mt-6 text-balance font-bold leading-[1.02] tracking-[-0.03em] text-[2.7rem] sm:text-[3.75rem]">
+          {/* Headline — escala progressiva para mobile legível */}
+          <h1 className="mt-6 text-balance font-bold leading-[1.03] tracking-[-0.025em] text-[1.95rem] sm:text-[2.55rem] lg:text-[3.75rem] sm:tracking-[-0.03em]">
             A operação de campo{' '}
             <span className="text-gradient-primary">inteira em um sistema.</span>
           </h1>
@@ -184,7 +189,7 @@ export function Hero() {
         </div>
 
         {/* ── Coluna direita: Orb 3D + Dashboard ── */}
-        <div className="relative lg:pl-4">
+        <div className="relative overflow-x-clip lg:overflow-visible lg:pl-4">
           {/* AI Orb — background layer (só no desktop) */}
           <div
             aria-hidden

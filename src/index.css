@@ -209,26 +209,6 @@
   background-clip: text;
 }
 
-/* ─── GLASS SURFACE ──────────────────────────────────────── */
-.glass {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-}
-
-/* ─── GLOW UTILITIES ─────────────────────────────────────── */
-.glow-primary {
-  box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--primary) 20%, transparent),
-    0 8px 32px -8px color-mix(in srgb, var(--primary) 50%, transparent);
-}
-.glow-ai {
-  box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--ai) 15%, transparent),
-    0 8px 32px -8px color-mix(in srgb, var(--ai) 30%, transparent);
-}
-
 /* ─── AI VISUAL SYSTEM ───────────────────────────────────── */
 @keyframes orb-spin {
   to { transform: rotate(360deg); }
@@ -247,29 +227,22 @@
   100% { top: 100%; opacity: 0; }
 }
 @keyframes ring-expand {
-  0%   { transform: scale(0.9); opacity: 0.8; }
-  100% { transform: scale(2.6); opacity: 0; }
+  0%   { transform: scale(0.9); opacity: 0.75; }
+  100% { transform: scale(2.8); opacity: 0; }
 }
 @keyframes wave-bar {
-  0%, 100% { transform: scaleY(0.2); }
+  0%, 100% { transform: scaleY(0.15); }
   50%       { transform: scaleY(1); }
 }
 @keyframes particle-up {
   0%   { opacity: 0.6; transform: translateY(0) scale(1); }
   100% { opacity: 0;   transform: translateY(-60px) scale(0.3); }
 }
-@keyframes data-appear {
-  0%   { opacity: 0; transform: translateX(-5px); }
-  100% { opacity: 1; transform: translateX(0); }
-}
-@keyframes shimmer-move {
-  0%   { transform: translateX(-100%); }
-  100% { transform: translateX(250%); }
-}
 
-.orb-spin      { animation: orb-spin    16s linear        infinite; }
-.orb-spin-r    { animation: orb-spin-r  22s linear        infinite; }
-.orb-drift     { animation: orb-drift    7s ease-in-out   infinite; }
-.scan-sweep    { animation: scan-sweep  4.5s ease-in-out  1s infinite; }
-.ring-expand   { animation: ring-expand 2.4s ease-out     infinite; }
-.wave-bar      { animation: wave-bar    0.75s ease-in-out infinite; }
+/* will-change declarado nas classes de animação para compositing na GPU */
+.orb-spin    { will-change: transform; animation: orb-spin    16s linear      infinite; }
+.orb-spin-r  { will-change: transform; animation: orb-spin-r  22s linear      infinite; }
+.orb-drift   { will-change: transform; animation: orb-drift    7s ease-in-out infinite; }
+.scan-sweep  { will-change: top, opacity; animation: scan-sweep 4.5s ease-in-out 1s infinite; }
+.ring-expand { will-change: transform, opacity; animation: ring-expand 2.4s ease-out infinite; }
+.wave-bar    { will-change: transform; transform-origin: bottom; animation: wave-bar 0.75s ease-in-out infinite; }

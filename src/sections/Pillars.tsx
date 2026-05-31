@@ -76,7 +76,7 @@ export function Pillars() {
                 className={p.featured ? 'lg:col-span-2 lg:row-span-2' : ''}
               >
                 <div
-                  className="group relative h-full overflow-hidden rounded-2xl p-7 transition-all duration-300 hover:-translate-y-0.5"
+                  className="group relative h-full overflow-hidden rounded-2xl p-5 transition-all duration-300 hover:-translate-y-0.5 sm:p-7"
                   style={{
                     background: p.featured
                       ? `linear-gradient(160deg, color-mix(in srgb, ${accentColor} 8%, var(--card)) 0%, var(--card) 60%)`

@@ -59,10 +59,10 @@ export function Sectors() {
             <Reveal
               key={s.title}
               delay={i * 70}
-              className="group rounded-2xl border border-border bg-card p-7 transition-colors hover:border-primary/40"
+              className="group rounded-2xl border border-border bg-card p-5 transition-all duration-200 hover:border-primary/40 hover:-translate-y-0.5 sm:p-7"
             >
               <div className="flex items-start gap-4">
-                <span className="grid size-11 shrink-0 place-items-center rounded-xl border border-border bg-card text-primary transition-colors group-hover:border-primary/30 group-hover:bg-primary/5">
+                <span className="grid size-11 shrink-0 place-items-center rounded-xl border border-border bg-card text-primary transition-all duration-200 group-hover:border-primary/30 group-hover:bg-primary/5 group-hover:scale-105">
                   <s.icon className="size-5" />
                 </span>
                 <div>

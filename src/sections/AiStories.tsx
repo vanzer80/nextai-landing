@@ -81,7 +81,7 @@ function ReceiptVisual() {
       style={{
         background: 'rgba(5,10,20,0.65)',
         border: '1px solid rgba(255,255,255,0.06)',
-        height: '108px',
+        minHeight: '96px',
       }}
     >
       {/* Receipt lines */}
@@ -150,20 +150,18 @@ function VoiceVisual() {
       className="mt-4 flex items-center gap-3 rounded-xl px-3 py-3"
       style={{ background: 'rgba(5,10,20,0.65)', border: '1px solid rgba(255,255,255,0.06)' }}
     >
-      {/* Audio waveform */}
-      <div className="flex h-9 shrink-0 items-center gap-0.5">
+      {/* Audio waveform — items-end + height variável; wave-bar só usa scaleY sem conflito */}
+      <div className="flex h-9 shrink-0 items-end gap-0.5">
         {heights.map((h, i) => (
           <div
             key={i}
-            className="wave-bar w-1 rounded-full"
+            className="wave-bar w-1 rounded-sm"
             style={{
-              height: '100%',
-              background: `linear-gradient(to top, var(--primary), color-mix(in srgb, var(--primary) 40%, transparent))`,
-              transformOrigin: 'center',
+              height: `${Math.round(h * 100)}%`,
+              background: `linear-gradient(to top, var(--primary), color-mix(in srgb, var(--primary) 35%, transparent))`,
               animationDelay: `${i * 0.055}s`,
-              animationDuration: `${0.6 + (i % 5) * 0.08}s`,
-              transform: `scaleY(${h})`,
-              opacity: 0.75,
+              animationDuration: `${0.48 + (i % 5) * 0.07}s`,
+              opacity: 0.45 + (i % 4) * 0.15,
             }}
           />
         ))}

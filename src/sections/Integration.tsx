@@ -48,7 +48,7 @@ export function Integration() {
           </dl>
         </div>
 
-        <div className="relative rounded-2xl border border-border bg-surface p-8">
+        <div className="relative hidden rounded-2xl border border-border bg-surface p-8 md:block">
           <div aria-hidden className="blueprint absolute inset-0 rounded-2xl opacity-60" />
           <div className="relative flex flex-col items-center gap-6">
             <div className="flex w-full justify-around">
