@@ -5,15 +5,16 @@ import { ButtonLink, Container, cn } from '../components/ui';
 import { APP_URL, DEMO_HREF } from '../config';
 
 const links = [
-  { href: '#problema', label: 'O problema' },
   { href: '#fluxo', label: 'Como funciona' },
   { href: '#ia', label: 'IA na prática' },
+  { href: '#setores', label: 'Setores' },
   { href: '#resultados', label: 'Resultados' },
   { href: '#faq', label: 'FAQ' },
-];
+] as const;
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
@@ -33,7 +34,7 @@ export function Navbar() {
           <NextAILogo height={24} className="text-text" />
         </a>
 
-        <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Seções">
+        <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Seções da página">
           {links.map((l) => (
             <a
               key={l.href}

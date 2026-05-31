@@ -1,14 +1,14 @@
 import { NextAILogo } from '../components/NextAILogo';
 import { Container } from '../components/ui';
-import { APP_URL } from '../config';
+import { APP_URL, DEMO_HREF } from '../config';
 
 const cols = [
   {
     title: 'Produto',
     links: [
-      { label: 'O problema', href: '#problema' },
       { label: 'Como funciona', href: '#fluxo' },
       { label: 'IA na prática', href: '#ia' },
+      { label: 'Setores', href: '#setores' },
       { label: 'Resultados', href: '#resultados' },
       { label: 'FAQ', href: '#faq' },
     ],
@@ -16,11 +16,12 @@ const cols = [
   {
     title: 'Acesso',
     links: [
-      { label: 'Entrar', href: APP_URL },
+      { label: 'Agendar demonstração', href: DEMO_HREF },
+      { label: 'Entrar na plataforma', href: APP_URL },
       { label: 'Portal do cliente', href: APP_URL },
     ],
   },
-];
+] as const;
 
 export function Footer() {
   return (
@@ -29,8 +30,8 @@ export function Footer() {
         <div className="lg:col-span-2">
           <NextAILogo height={24} className="text-text" />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted">
-            A operação de campo inteira em um sistema só — do chamado ao financeiro, com IA, tempo real e operação
-            offline.
+            A operação de campo inteira em um sistema só — do chamado ao financeiro, com IA,
+            aprovação rastreável e funcionamento offline.
           </p>
         </div>
         {cols.map((c) => (

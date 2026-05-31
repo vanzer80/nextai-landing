@@ -2,10 +2,10 @@ import { Database, FileSpreadsheet, BarChart3, Smartphone, Check } from 'lucide-
 import { Container, Eyebrow } from '../components/ui';
 
 const bullets = [
-  { k: 'Começa com uma equipe', v: 'e expande quando fizer sentido' },
-  { k: 'Importa o que você já tem', v: 'clientes, equipamentos e histórico' },
-  { k: 'Treino curto', v: 'foto e voz para o técnico; uma conversa com os gestores' },
-];
+  { k: 'Começa com uma equipe', v: 'expande quando os resultados aparecerem' },
+  { k: 'Importa o que você já tem', v: 'clientes, equipamentos e histórico de OS' },
+  { k: 'Onboarding com estrutura', v: 'técnicos aprendem em minutos; gestores, em uma conversa' },
+] as const;
 
 export function Integration() {
   return (
@@ -14,18 +14,26 @@ export function Integration() {
         <div>
           <Eyebrow>Conecta com o que você já usa</Eyebrow>
           <h2 className="mt-4 text-balance text-[1.9rem] font-bold leading-[1.1] sm:text-[2.4rem]">
-            Você não larga o que já roda. Você para de digitar duas vezes.
+            Você não abandona o que já roda. Você para de digitar nas duas pontas.
           </h2>
           <div className="mt-5 space-y-4 text-[15px] leading-relaxed text-muted">
             <p>
-              O financeiro continua no ERP e a diretoria continua no BI. O NextAI manda os dados de OS e reembolso
-              prontos para esses dois — em PDF, Excel ou por integração, conforme o caso. Ninguém precisa abandonar o
-              sistema atual para parar de copiar planilha.
+              O financeiro continua no ERP e a diretoria continua no BI. O NextAI entrega OS fechadas
+              e reembolsos aprovados para esses sistemas em PDF, Excel ou por integração direta —
+              conforme o que cada empresa já utiliza. Ninguém precisa mudar de ferramenta para parar
+              de copiar dado de uma tela para outra.
             </p>
             <p>
-              A entrada também é por partes. Começa com uma equipe, com os seus tipos de OS e as suas categorias de
-              despesa já configurados. Quando essa frente está rodando redonda, entra a próxima. A saída do WhatsApp
-              acontece equipe por equipe, sem parar a operação no meio.
+              A entrada é por partes. Começa com uma equipe, com os seus tipos de OS, categorias de
+              despesa e regras de aprovação já configurados. Quando essa frente está funcionando de
+              forma consistente, entra a próxima. A saída dos fluxos improvisados acontece equipe por
+              equipe, sem interromper a operação no meio do caminho.
+            </p>
+            <p>
+              O onboarding tem estrutura definida: importamos dados de clientes, equipamentos e
+              histórico; configuramos os checklists dos seus tipos de serviço; e treinamos gestores
+              em uma conversa e técnicos em menos de uma hora. O suporte continua disponível depois
+              para ajustar o que for preciso à medida que a operação cresce.
             </p>
           </div>
 
