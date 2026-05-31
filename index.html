@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>NextAI — A operação de campo inteira em um sistema só</title>
+    <meta name="theme-color" content="#0A0E17" />
+
+    <meta
+      name="description"
+      content="O NextAI tira a operação de campo do WhatsApp e das planilhas: ordens de serviço, relatórios, reembolsos e compras em um só lugar, com IA que lê comprovantes e aprovação rastreável. Funciona offline."
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="NextAI" />
+    <meta property="og:title" content="NextAI — A operação de campo inteira em um sistema só" />
+    <meta
+      property="og:description"
+      content="Do chamado à aprovação, com rastreabilidade de ponta a ponta. IA que lê comprovantes por foto ou voz. Funciona offline em campo."
+    />
+    <!-- TODO: gerar PNG 1200x630 definitivo -->
+    <meta property="og:image" content="/og-image.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="/og-image.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@400;500;600&family=Schibsted+Grotesk:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('nextai-lp-theme');
+          // Tema padrão: escuro (base sofisticada da identidade).
+          var resolved = stored === 'light' ? 'light' : 'dark';
+          document.documentElement.classList.toggle('dark', resolved === 'dark');
+          document.documentElement.style.colorScheme = resolved;
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+<!-- TODO: substituir por PNG 1200x630 definitivo antes de divulgar publicamente -->
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220" />
+      <stop offset="1" stop-color="#12203f" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <g transform="translate(110,250) scale(1.1)">
+    <polygon points="39,55 53,55 45,145 31,145" fill="#2563EB" />
+    <polygon points="113,55 127,55 119,145 105,145" fill="#2563EB" />
+    <polygon points="46.9,58.5 59.1,51.5 111.1,141.5 98.9,148.5" fill="#3b82f6" />
+    <text y="136" font-family="Helvetica, Arial, sans-serif" font-weight="700" font-size="100" letter-spacing="-3">
+      <tspan x="150" fill="#ffffff">Next</tspan><tspan fill="#3b82f6">AI</tspan>
+    </text>
+  </g>
+  <text x="110" y="470" font-family="Helvetica, Arial, sans-serif" font-weight="700" font-size="52" fill="#ffffff">O sistema operacional das</text>
+  <text x="110" y="535" font-family="Helvetica, Arial, sans-serif" font-weight="700" font-size="52" fill="#93b4ff">equipes de campo.</text>
+</svg>

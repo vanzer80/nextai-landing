@@ -1,0 +1,123 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: 'Schibsted Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
+
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-card2: var(--card2);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-on-primary: var(--on-primary);
+  --color-ai: var(--ai);
+  --color-alert: var(--alert);
+  --color-success: var(--success);
+}
+
+/* Modo claro (par) */
+:root {
+  --bg: #f6f8fc;
+  --surface: #eef2f9;
+  --card: #ffffff;
+  --card2: #f4f7fb;
+  --border: #e2e8f2;
+  --text: #0a0e17;
+  --muted: #56627a;
+  --primary: #2f62e6;
+  --primary-hover: #2353d6;
+  --on-primary: #ffffff;
+  --ai: #0c9c8e;
+  --alert: #c9760a;
+  --success: #1e9e5e;
+  --grid-line: rgba(10, 14, 23, 0.05);
+}
+
+/* Modo escuro — base sofisticada (padrão) */
+.dark {
+  --bg: #0a0e17;
+  --surface: #0e1421;
+  --card: #141c2e;
+  --card2: #1a2336;
+  --border: #232d44;
+  --text: #eaeff7;
+  --muted: #93a1b8;
+  --primary: #3b6ff6;
+  --primary-hover: #5683ff;
+  --on-primary: #ffffff;
+  --ai: #2fe0ce;
+  --alert: #f5a524;
+  --success: #34c77b;
+  --grid-line: rgba(255, 255, 255, 0.045);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.022em;
+  }
+  ::selection {
+    background-color: color-mix(in srgb, var(--primary) 28%, transparent);
+  }
+}
+
+/* Grade técnica — assinatura visual "blueprint" */
+.blueprint {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* Reveal on-scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal[data-shown='true'] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
