@@ -27,12 +27,12 @@ export function NextAILogo({ variant = 'horizontal', height, className }: NextAI
   }
 
   const h = height ?? 32;
-  const w = Math.round((h * 572) / 200);
+  const w = Math.round((h * 555) / 200);
   return (
     <svg
       width={w}
       height={h}
-      viewBox="0 0 572 200"
+      viewBox="0 0 555 200"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       aria-label="NextAI"
@@ -48,7 +48,7 @@ export function NextAILogo({ variant = 'horizontal', height, className }: NextAI
         fontSize="100"
         letterSpacing="-3"
       >
-        <tspan x="150" fill="currentColor">ext</tspan>
+        <tspan x="133" fill="currentColor">ext</tspan>
         <tspan fill="#2563EB">AI</tspan>
       </text>
     </svg>

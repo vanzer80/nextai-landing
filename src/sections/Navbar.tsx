@@ -50,7 +50,7 @@ export function Navbar() {
 
       <Container className="flex h-16 items-center justify-between">
         <a href="#topo" aria-label="NextAI — início" className="flex items-center">
-          <NextAILogo height={24} className="text-text" />
+          <NextAILogo height={28} className="text-text" />
         </a>
 
         {/* Desktop nav */}

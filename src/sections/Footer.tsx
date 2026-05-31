@@ -28,7 +28,7 @@ export function Footer() {
     <footer className="border-t border-border bg-surface">
       <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div className="lg:col-span-2">
-          <NextAILogo height={24} className="text-text" />
+          <NextAILogo height={28} className="text-text" />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted">
             A operação de campo inteira em um sistema só — do chamado ao financeiro, com IA,
             aprovação rastreável e funcionamento offline.
