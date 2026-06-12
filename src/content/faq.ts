@@ -13,6 +13,14 @@ export const FAQ_ITEMS: FaqItem[] = [
     a: 'Não. A implantação começa por um processo ou uma equipe e vai expandindo conforme os resultados aparecem. Os fluxos improvisados saem gradualmente, sem interromper o que já está rodando. Você não larga nada antes de ter certeza de que o novo está funcionando.',
   },
   {
+    q: 'Integra com o ERP que eu já uso (TOTVS, SAP, Omie)?',
+    a: 'Sim, por API. O NextAI expõe uma API documentada com chaves por integração e webhooks assinados que avisam o seu sistema em tempo real quando uma ordem de serviço fecha, um reembolso é aprovado ou um orçamento é assinado. Quem não quer integração técnica recebe os mesmos dados em PDF e Excel. A conexão com o ERP é feita pelo seu time de TI ou com o nosso apoio durante a implantação.',
+  },
+  {
+    q: 'Meu cliente manda os chamados em PDF. Minha equipe precisa redigitar?',
+    a: 'Não. O NextAI lê o PDF do chamado, cria a ordem de serviço com os campos preenchidos e anexa as fotos que vierem dentro do documento. Cada campo extraído tem um nível de confiança: o que a IA não tem certeza fica marcado para revisão humana antes de seguir — nada entra no sistema no chute.',
+  },
+  {
     q: 'Qual o tempo mínimo para a equipe estar usando de verdade?',
     a: 'Em média, uma semana da configuração inicial ao primeiro uso real em campo. Os técnicos aprendem a registrar ordens de serviço e comprovantes em menos de uma hora — o celular já é familiar, muda só onde eles registram. Os gestores precisam de uma conversa para configurar aprovações e entender o painel.',
   },

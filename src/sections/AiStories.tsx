@@ -1,4 +1,4 @@
-import { Receipt, LayoutDashboard, Mic, ArrowRight } from 'lucide-react';
+import { Receipt, LayoutDashboard, Mic, FileText, ArrowRight } from 'lucide-react';
 import { Container, Reveal, SectionTitle, AiTag } from '../components/ui';
 
 /* ─── Mini dashboard para o card do gestor ─── */
@@ -193,6 +193,85 @@ function VoiceVisual() {
   );
 }
 
+/* ─── PDF → OS para o card do chamado importado ─── */
+function PdfVisual() {
+  const docLines = [85, 60, 92, 45, 70, 55] as const;
+  const fields = [
+    { k: 'Chamado',  v: '#4827',             review: false },
+    { k: 'Cliente',  v: 'Matriz — SP',       review: false },
+    { k: 'Serviço',  v: 'Manut. corretiva',  review: false },
+    { k: 'Data',     v: '08/04',             review: true },
+  ] as const;
+
+  return (
+    <div
+      className="flex items-center gap-3 rounded-xl px-3 py-3"
+      style={{ background: 'rgba(5,10,20,0.65)', border: '1px solid rgba(255,255,255,0.06)' }}
+    >
+      {/* Documento PDF de origem */}
+      <div
+        className="flex w-[88px] shrink-0 flex-col gap-1.5 rounded-md px-2.5 py-2.5"
+        style={{ border: '1px solid rgba(255,255,255,0.08)', background: 'rgba(255,255,255,0.02)' }}
+      >
+        <span className="font-mono text-[8px] uppercase tracking-wider" style={{ color: 'rgba(255,255,255,0.28)' }}>
+          PDF
+        </span>
+        {docLines.map((w, i) => (
+          <div
+            key={i}
+            className="rounded-full"
+            style={{ height: '2.5px', width: `${w}%`, background: 'rgba(255,255,255,0.08)' }}
+          />
+        ))}
+        {/* Foto embutida no documento */}
+        <div
+          className="mt-0.5 h-5 rounded-sm"
+          style={{
+            background: 'color-mix(in srgb, var(--ai) 14%, transparent)',
+            border: '1px dashed color-mix(in srgb, var(--ai) 30%, transparent)',
+          }}
+        />
+      </div>
+
+      <ArrowRight className="size-4 shrink-0" style={{ color: 'rgba(255,255,255,0.2)' }} />
+
+      {/* Campos extraídos com nível de confiança */}
+      <div className="flex flex-1 flex-col gap-1.5">
+        {fields.map((f) => (
+          <div key={f.k} className="flex items-center justify-between gap-2">
+            <span className="font-mono text-[8px]" style={{ color: 'rgba(255,255,255,0.28)' }}>
+              {f.k}
+            </span>
+            <span
+              className="flex items-center gap-1.5 font-mono text-[9px] font-medium"
+              style={{ color: f.review ? 'var(--warning)' : 'rgba(255,255,255,0.6)' }}
+            >
+              {f.v}
+              {f.review && (
+                <span
+                  className="rounded-full px-1.5 py-px font-mono text-[7px] uppercase tracking-wider"
+                  style={{
+                    background: 'color-mix(in srgb, var(--warning) 12%, transparent)',
+                    color: 'var(--warning)',
+                  }}
+                >
+                  revisar
+                </span>
+              )}
+            </span>
+          </div>
+        ))}
+        <div className="mt-0.5 flex items-center justify-between gap-2">
+          <span className="font-mono text-[8px]" style={{ color: 'color-mix(in srgb, var(--ai) 70%, transparent)' }}>
+            3 fotos do PDF anexadas
+          </span>
+          <AiTag>Extraído por IA</AiTag>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ─── AiStories principal ─── */
 export function AiStories() {
   return (
@@ -281,6 +360,37 @@ export function AiStories() {
                 O técnico narra o que fez por voz. O relatório sai escrito, organizado e vinculado à ordem de serviço. Nada sobrou para digitar à noite.
               </p>
               <VoiceVisual />
+            </div>
+          </Reveal>
+
+          {/* ── Card 4: Chamado em PDF (largura total) ── */}
+          <Reveal delay={260} className="lg:col-span-3">
+            <div
+              className="group relative h-full overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:-translate-y-0.5 sm:p-7"
+              style={{ background: 'var(--card)', border: '1px solid var(--border)' }}
+            >
+              <div className="flex flex-col gap-6 lg:flex-row lg:items-center">
+                <div className="lg:flex-1">
+                  <span
+                    className="grid size-10 place-items-center rounded-xl transition-all duration-300 group-hover:scale-105"
+                    style={{ background: 'color-mix(in srgb, var(--ai) 12%, transparent)', color: 'var(--ai)' }}
+                  >
+                    <FileText className="size-4.5" />
+                  </span>
+                  <p className="mt-4 font-mono text-[10px] uppercase tracking-wider" style={{ color: 'var(--ai)' }}>
+                    O chamado que chega em PDF
+                  </p>
+                  <p className="mt-1.5 text-pretty text-[13px] leading-relaxed text-muted">
+                    O cliente grande manda o chamado do jeito dele: um PDF no e-mail. O NextAI lê o
+                    arquivo, abre a ordem de serviço com os campos preenchidos e anexa as fotos que
+                    vinham dentro do documento. E o campo em que a IA não tem certeza não passa
+                    batido — fica marcado para revisão humana antes de seguir.
+                  </p>
+                </div>
+                <div className="w-full lg:w-[400px] lg:shrink-0">
+                  <PdfVisual />
+                </div>
+              </div>
             </div>
           </Reveal>
         </div>

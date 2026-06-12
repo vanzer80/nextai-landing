@@ -3,7 +3,8 @@ import { Container, Eyebrow } from '../components/ui';
 
 const bullets = [
   { k: 'Começa com uma equipe', v: 'expande quando os resultados aparecerem' },
-  { k: 'Importa o que você já tem', v: 'clientes, equipamentos e histórico de ordens de serviço' },
+  { k: 'Importa o que você já tem', v: 'clientes, equipamentos, histórico — e chamados em PDF viram OS sem redigitação' },
+  { k: 'Fala com o seu ERP', v: 'API documentada, chaves por integração e webhooks em tempo real' },
   { k: 'Onboarding com estrutura', v: 'técnicos aprendem em minutos; gestores, em uma conversa' },
 ] as const;
 
@@ -19,9 +20,10 @@ export function Integration() {
           <div className="mt-5 space-y-4 text-[15px] leading-relaxed text-muted">
             <p>
               O financeiro continua no ERP e a diretoria continua no BI. O NextAI entrega ordens de serviço fechadas
-              e reembolsos aprovados para esses sistemas em PDF, Excel ou por integração direta —
-              conforme o que cada empresa já utiliza. Ninguém precisa mudar de ferramenta para parar
-              de copiar dado de uma tela para outra.
+              e reembolsos aprovados para esses sistemas em PDF, Excel ou por API — com webhooks que
+              avisam o seu sistema no momento em que uma OS fecha, um reembolso é aprovado ou um
+              orçamento é assinado. Ninguém precisa mudar de ferramenta para parar de copiar dado de
+              uma tela para outra.
             </p>
             <p>
               A entrada é por partes. Começa com uma equipe, com os seus tipos de ordem de serviço, categorias de
@@ -37,7 +39,7 @@ export function Integration() {
             </p>
           </div>
 
-          <dl className="mt-8 grid gap-3 sm:grid-cols-3">
+          <dl className="mt-8 grid gap-3 sm:grid-cols-2">
             {bullets.map((b) => (
               <div key={b.k} className="rounded-xl border border-border bg-card p-4">
                 <Check className="size-4 text-success" />
@@ -56,6 +58,7 @@ export function Integration() {
               <Node icon={BarChart3} label="BI" />
               <Node icon={FileSpreadsheet} label="Planilhas" />
             </div>
+            <span className="-my-4 font-mono text-[10px] text-muted">API · webhooks em tempo real</span>
             <svg aria-hidden width="100%" height="40" viewBox="0 0 300 40" className="text-border">
               <path d="M50 0 V20 H250 V0 M150 20 V40" fill="none" stroke="currentColor" strokeWidth="1.5" />
             </svg>

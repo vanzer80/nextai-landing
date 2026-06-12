@@ -40,10 +40,10 @@ src/
     ProvaRapida.tsx   — barra de contexto (thin strip)
     Pillars.tsx       — 3 pilares de valor
     Flow.tsx          — 3 passos captura → organiza → decide
-    AiStories.tsx     — 3 micro-histórias de IA
+    AiStories.tsx     — 4 micro-histórias de IA (gestor, comprovante, voz, chamado em PDF)
     Sectors.tsx       — 4 setores operacionais (manutenção, facilities, AT, obras)
     Results.tsx       — métricas tipadas + depoimentos
-    Integration.tsx   — conexão ERP/BI + implantação gradual
+    Integration.tsx   — conexão ERP/BI via API + webhooks + implantação gradual
     Faq.tsx           — FAQ accordion (dados de content/faq.ts)
     FinalCta.tsx      — CTA final
     Footer.tsx
